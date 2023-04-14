@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>MoravianStar_Demo.Maintenance.Services</RootNamespace>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MoravianStar-Demo.Common.Core\MoravianStar-Demo.Common.Core.csproj" />
+    <ProjectReference Include="..\MoravianStar-Demo.Maintenance.Core\MoravianStar-Demo.Maintenance.Core.csproj" />
+    <ProjectReference Include="..\MoravianStar-Demo.Persistence\MoravianStar-Demo.Persistence.csproj" />
+  </ItemGroup>
+
+</Project>

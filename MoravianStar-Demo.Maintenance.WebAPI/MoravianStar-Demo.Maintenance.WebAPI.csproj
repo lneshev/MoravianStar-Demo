@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <RootNamespace>MoravianStar_Demo.Maintenance.WebAPI</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MoravianStar.WebAPI" Version="0.14.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MoravianStar-Demo.Maintenance.Core\MoravianStar-Demo.Maintenance.Core.csproj" />
+    <ProjectReference Include="..\MoravianStar-Demo.Maintenance.Services\MoravianStar-Demo.Maintenance.Services.csproj" />
+  </ItemGroup>
+
+</Project>

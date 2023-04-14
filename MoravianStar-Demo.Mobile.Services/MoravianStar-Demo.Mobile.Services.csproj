@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>MoravianStar_Demo.Mobile.Services</RootNamespace>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HotChocolate.Data.EntityFramework" Version="12.18.0" />
+    <PackageReference Include="HotChocolate.Data.Spatial" Version="12.18.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MoravianStar-Demo.Mobile.Core\MoravianStar-Demo.Mobile.Core.csproj" />
+    <ProjectReference Include="..\MoravianStar-Demo.Persistence\MoravianStar-Demo.Persistence.csproj" />
+  </ItemGroup>
+
+</Project>
