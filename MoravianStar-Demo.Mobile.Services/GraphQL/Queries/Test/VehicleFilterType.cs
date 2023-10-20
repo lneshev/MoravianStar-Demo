@@ -1,5 +1,5 @@
-﻿using DataLayer.Common.Core.Entities.Test;
-using HotChocolate.Data.Filters;
+﻿using HotChocolate.Data.Filters;
+using MoravianStar_Demo.Common.Core.Entities.Test;
 using System;
 
 namespace MoravianStar_Demo.Mobile.Services.GraphQL.Queries.Test

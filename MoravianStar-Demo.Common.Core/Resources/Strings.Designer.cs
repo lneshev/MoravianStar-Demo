@@ -61,38 +61,11 @@ namespace MoravianStar_Demo.Common.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An entity of type: &apos;{0}&apos; with ID: &apos;{1}&apos; was not found..
+        ///   Looks up a localized string similar to HTTP header &apos;ClientId&apos; is required and should be an integer value..
         /// </summary>
-        public static string AnEntityOfTypeWithIdWasNotFound {
+        public static string HTTPHeaderClientIdIsRequired {
             get {
-                return ResourceManager.GetString("AnEntityOfTypeWithIdWasNotFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A sorting field is either null or empty..
-        /// </summary>
-        public static string ASortingFieldIsEitherNullOrEmpty {
-            get {
-                return ResourceManager.GetString("ASortingFieldIsEitherNullOrEmpty", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Disabling the security is not allowed..
-        /// </summary>
-        public static string DisablingTheSecurityIsNotAllowed {
-            get {
-                return ResourceManager.GetString("DisablingTheSecurityIsNotAllowed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Parameters: &apos;id&apos; and &apos;model.id&apos; should be same..
-        /// </summary>
-        public static string ParametersIdAndModelIdShouldBeSame {
-            get {
-                return ResourceManager.GetString("ParametersIdAndModelIdShouldBeSame", resourceCulture);
+                return ResourceManager.GetString("HTTPHeaderClientIdIsRequired", resourceCulture);
             }
         }
         

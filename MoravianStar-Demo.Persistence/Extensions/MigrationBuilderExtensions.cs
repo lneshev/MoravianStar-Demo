@@ -17,7 +17,7 @@ namespace MoravianStar_Demo.Persistence.Extensions
             {
                 case EFCoreProviderConstants.MicrosoftEFCoreSqlServer:
                     {
-                        result = migrationBuilder.Sql($"CREATE SYNONYM [dbo].[{name}] FOR [DataLayer_System].[dbo].[{name}]");
+                        result = migrationBuilder.Sql($"CREATE SYNONYM [dbo].[{name}] FOR [MoravianStarDemo_System].[dbo].[{name}]");
                         break;
                     }
                 default:

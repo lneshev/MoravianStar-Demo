@@ -7,7 +7,7 @@ using MoravianStar_Demo.Persistence.DbContexts;
 
 namespace MoravianStar_Demo.Persistence.EntityConfigurations.Test
 {
-    [ForDbContext(typeof(DataLayer_ClientContext))]
+    [ForDbContext(typeof(ClientContext))]
     public class BlockEntityConfiguration : IEntityTypeConfiguration<BlockEntity>
     {
         public void Configure(EntityTypeBuilder<BlockEntity> builder)

@@ -11,10 +11,10 @@ namespace MoravianStar_Demo.Web.WebAPI.Infrastructure.Attributes
     /// </summary>
     public class ClientDMLContextFilterAttribute : IAsyncActionFilter
     {
-        private readonly DataLayer_ClientDMLContext dbContext;
+        private readonly ClientDMLContext dbContext;
         private readonly IConfiguration configuration;
 
-        public ClientDMLContextFilterAttribute(DataLayer_ClientDMLContext dbContext, IConfiguration configuration)
+        public ClientDMLContextFilterAttribute(ClientDMLContext dbContext, IConfiguration configuration)
         {
             this.dbContext = dbContext;
             this.configuration = configuration;
@@ -26,7 +26,7 @@ namespace MoravianStar_Demo.Web.WebAPI.Infrastructure.Attributes
             if (!string.IsNullOrEmpty(clientIdString))
             {
                 var clientId = int.Parse(clientIdString);
-                var connectionString = string.Format(configuration["ConnectionStrings:TestClient"], clientId);
+                var connectionString = string.Format(configuration["ConnectionStrings:Client"], clientId);
                 dbContext.Database.SetConnectionString(connectionString);
                 try
                 {

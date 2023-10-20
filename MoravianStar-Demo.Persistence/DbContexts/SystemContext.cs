@@ -18,9 +18,9 @@ namespace MoravianStar_Demo.Persistence.DbContexts
     /// <summary>
     /// A DbContext for working with "System" database.
     /// </summary>
-    public class DataLayer_SystemContext : DbContext
+    public class SystemContext : DbContext
     {
-        public DataLayer_SystemContext(DbContextOptions<DataLayer_SystemContext> options)
+        public SystemContext(DbContextOptions<SystemContext> options)
             : base(options)
         {
         }
@@ -50,7 +50,7 @@ namespace MoravianStar_Demo.Persistence.DbContexts
 
             modelBuilder.ApplyConfigurationsFromAssembly(
                 GetType().Assembly,
-                x => x.GetCustomAttributes<ForDbContextAttribute>().FirstOrDefault(y => y.DbContextType == typeof(DataLayer_SystemContext)) != null);
+                x => x.GetCustomAttributes<ForDbContextAttribute>().FirstOrDefault(y => y.DbContextType == typeof(SystemContext)) != null);
 
             modelBuilder.ManyToMany<ClientEntity, VehicleEntity>(x => x.Vehicles, x => x.Clients, "ClientId", "VehicleId", DbSchemaConstants.ClientVehicle);
         }

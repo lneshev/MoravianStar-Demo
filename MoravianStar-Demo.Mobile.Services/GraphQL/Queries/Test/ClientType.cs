@@ -1,10 +1,5 @@
-﻿using DataLayer.Common.Core.Entities.Test;
-using DataLayer.Common.Core.Extensions;
-using DataLayer.Persistence.DbContexts;
-using HotChocolate;
-using HotChocolate.Types;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
+﻿using HotChocolate.Types;
+using MoravianStar_Demo.Common.Core.Entities.Test;
 
 namespace MoravianStar_Demo.Mobile.Services.GraphQL.Queries.Test
 {
@@ -35,32 +30,32 @@ namespace MoravianStar_Demo.Mobile.Services.GraphQL.Queries.Test
             //descriptor
             //    .Field(x => x.MainAddress)
             //    .ResolveWith<Resolvers>(x => x.GetMainAddress(default!, default!))
-            //    .UseDbContext<DataLayer_SystemContext>();
+            //    .UseDbContext<SystemContext>();
 
             //descriptor
             //    .Field(x => x.Addresses)
             //    .ResolveWith<Resolvers>(x => x.GetAddresses(default!, default!))
-            //    .UseDbContext<DataLayer_SystemContext>();
+            //    .UseDbContext<SystemContext>();
 
             //descriptor
             //    .Field(x => x.Vehicles)
             //    .ResolveWith<Resolvers>(x => x.GetVehicles(default!, default!))
-            //    .UseDbContext<DataLayer_SystemContext>();
+            //    .UseDbContext<SystemContext>();
         }
 
         private class Resolvers
         {
-            //public AddressEntity GetMainAddress([Parent] ClientEntity client, [ScopedService] DataLayer_SystemContext dbContext)
+            //public AddressEntity GetMainAddress([Parent] ClientEntity client, [ScopedService] SystemContext dbContext)
             //{
             //    return dbContext.Set<AddressEntity>().SingleOrDefault(x => x.Id == client.MainAddressId);
             //}
 
-            //public IQueryable<AddressEntity> GetAddresses([Parent] ClientEntity client, [ScopedService] DataLayer_SystemContext dbContext)
+            //public IQueryable<AddressEntity> GetAddresses([Parent] ClientEntity client, [ScopedService] SystemContext dbContext)
             //{
             //    return dbContext.Set<AddressEntity>().Where(x => client.Addresses.Contains(x));
             //}
 
-            //public IQueryable<VehicleEntity> GetVehicles([Parent] ClientEntity client, [ScopedService] DataLayer_SystemContext dbContext)
+            //public IQueryable<VehicleEntity> GetVehicles([Parent] ClientEntity client, [ScopedService] SystemContext dbContext)
             //{
             //    return dbContext.Set<VehicleEntity>().Where(x => x.Clients.Contains(client));
             //}

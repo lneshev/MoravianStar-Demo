@@ -1,12 +1,15 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MoravianStar.WebAPI.Middlewares;
 using MoravianStar.WebAPI.Transformers;
+using MoravianStar_Demo.Maintenance.Services.Services;
 using MoravianStar_Demo.Maintenance.WebAPI.Infrastructure.Constants;
+using MoravianStar_Demo.Persistence.DbContexts;
 
 namespace MoravianStar_Demo.Maintenance.WebAPI
 {
@@ -49,16 +52,16 @@ namespace MoravianStar_Demo.Maintenance.WebAPI
             });
 
             services
-                .AddDbContextPool<DataLayer_SystemContext>(options =>
+                .AddDbContextPool<SystemContext>(options =>
                 {
-                    options.UseSqlServer(configuration["ConnectionStrings:TestSystem"], sqlServerOptions =>
+                    options.UseSqlServer(configuration["ConnectionStrings:System"], sqlServerOptions =>
                     {
                         sqlServerOptions.UseNetTopologySuite();
                     });
                 });
 
             services
-                .AddDbContextFactory<DataLayer_ClientContext>(options =>
+                .AddDbContextFactory<ClientContext>(options =>
                 {
                     options.UseSqlServer(".", sqlServerOptions =>
                     {
@@ -67,7 +70,7 @@ namespace MoravianStar_Demo.Maintenance.WebAPI
                 }, ServiceLifetime.Singleton);
 
             services
-                .AddDbContextFactory<DataLayer_ClientDMLContext>(options =>
+                .AddDbContextFactory<ClientDMLContext>(options =>
                 {
                     options.UseSqlServer(".", sqlServerOptions =>
                     {
@@ -83,9 +86,9 @@ namespace MoravianStar_Demo.Maintenance.WebAPI
         {
             if (env.IsDevelopment())
             {
+                app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI();
-                app.UseDeveloperExceptionPage();
             }
 
             app.UseMiddleware<ExceptionMiddleware>(env);

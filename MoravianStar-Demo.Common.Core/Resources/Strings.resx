@@ -117,17 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AnEntityOfTypeWithIdWasNotFound" xml:space="preserve">
-    <value>An entity of type: '{0}' with ID: '{1}' was not found.</value>
-  </data>
-  <data name="ASortingFieldIsEitherNullOrEmpty" xml:space="preserve">
-    <value>A sorting field is either null or empty.</value>
-  </data>
-  <data name="DisablingTheSecurityIsNotAllowed" xml:space="preserve">
-    <value>Disabling the security is not allowed.</value>
-  </data>
-  <data name="ParametersIdAndModelIdShouldBeSame" xml:space="preserve">
-    <value>Parameters: 'id' and 'model.id' should be same.</value>
+  <data name="HTTPHeaderClientIdIsRequired" xml:space="preserve">
+    <value>HTTP header 'ClientId' is required and should be an integer value.</value>
   </data>
   <data name="SavingDataToDBWithoutATransactionIsNotAllowed" xml:space="preserve">
     <value>Saving data to a database without a transaction is not allowed. First open a database transaction and then save&amp;commit the changes.</value>

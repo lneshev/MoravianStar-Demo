@@ -7,7 +7,7 @@ using MoravianStar_Demo.Persistence.DbContexts;
 
 namespace MoravianStar_Demo.Persistence.EntityConfigurations.Test
 {
-    [ForDbContext(typeof(DataLayer_SystemContext), isSynonymInTheOtherContext: true)]
+    [ForDbContext(typeof(SystemContext), isSynonymInTheOtherContext: true)]
     public class VehicleEntityConfiguration : IEntityTypeConfiguration<VehicleEntity>
     {
         public void Configure(EntityTypeBuilder<VehicleEntity> builder)

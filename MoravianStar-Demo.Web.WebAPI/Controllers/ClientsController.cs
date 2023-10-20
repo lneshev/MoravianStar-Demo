@@ -11,11 +11,11 @@ namespace MoravianStar_Demo.Web.WebAPI.Controllers
 {
     public class ClientsController : SystemEntityRestController<ClientEntity, int, ClientModel, ClientFilter>
     {
-        private readonly IEntityRepository<ClientEntity, DataLayer_SystemContext> clientER;
+        private readonly IEntityRepository<ClientEntity, SystemContext> clientER;
 
         public ClientsController()
         {
-            clientER = MoravianStar.Dao.Persistence.ForDbContext<DataLayer_SystemContext>().ForEntity<ClientEntity>();
+            clientER = MoravianStar.Dao.Persistence.ForDbContext<SystemContext>().ForEntity<ClientEntity>();
         }
 
         public override async Task<ActionResult<ClientModel>> Get([FromRoute] int id)

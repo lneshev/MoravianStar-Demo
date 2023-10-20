@@ -7,7 +7,7 @@ using MoravianStar_Demo.Persistence.DbContexts;
 
 namespace MoravianStar_Demo.Persistence.EntityConfigurations.Test
 {
-    [ForDbContext(typeof(DataLayer_SystemContext))]
+    [ForDbContext(typeof(SystemContext))]
     public class LanguageEntityConfiguration : IEntityTypeConfiguration<LanguageEntity>
     {
         public void Configure(EntityTypeBuilder<LanguageEntity> builder)

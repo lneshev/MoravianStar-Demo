@@ -3,30 +3,28 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MoravianStar_Demo.Persistence.DbContexts;
 using NetTopologySuite.Geometries;
 
 #nullable disable
 
-namespace DataLayer.Persistence.Migrations.DataLayer_System
+namespace MoravianStar_Demo.Persistence.Migrations.System
 {
-    [DbContext(typeof(DataLayer_SystemContext))]
-    [Migration("20220114132818_4")]
-    partial class _4
+    [DbContext(typeof(SystemContext))]
+    partial class SystemContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .UseCollation("SQL_Latin1_General_CP1_CS_AS")
-                .HasAnnotation("ProductVersion", "6.0.1")
+                .HasAnnotation("ProductVersion", "6.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("DataLayer.Common.Core.Entities.Test.AddressEntity", b =>
+            modelBuilder.Entity("MoravianStar_Demo.Common.Core.Entities.Test.AddressEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -47,7 +45,7 @@ namespace DataLayer.Persistence.Migrations.DataLayer_System
                     b.ToTable("Address", (string)null);
                 });
 
-            modelBuilder.Entity("DataLayer.Common.Core.Entities.Test.ClientEntity", b =>
+            modelBuilder.Entity("MoravianStar_Demo.Common.Core.Entities.Test.ClientEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -77,7 +75,7 @@ namespace DataLayer.Persistence.Migrations.DataLayer_System
                     b.ToTable("Client", (string)null);
                 });
 
-            modelBuilder.Entity("DataLayer.Common.Core.Entities.Test.LanguageEntity", b =>
+            modelBuilder.Entity("MoravianStar_Demo.Common.Core.Entities.Test.LanguageEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -94,7 +92,7 @@ namespace DataLayer.Persistence.Migrations.DataLayer_System
                     b.ToTable("Language", (string)null);
                 });
 
-            modelBuilder.Entity("DataLayer.Common.Core.Entities.Test.VehicleEntity", b =>
+            modelBuilder.Entity("MoravianStar_Demo.Common.Core.Entities.Test.VehicleEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -133,16 +131,16 @@ namespace DataLayer.Persistence.Migrations.DataLayer_System
                     b.ToTable("ClientVehicle");
                 });
 
-            modelBuilder.Entity("DataLayer.Common.Core.Entities.Test.AddressEntity", b =>
+            modelBuilder.Entity("MoravianStar_Demo.Common.Core.Entities.Test.AddressEntity", b =>
                 {
-                    b.HasOne("DataLayer.Common.Core.Entities.Test.ClientEntity", null)
+                    b.HasOne("MoravianStar_Demo.Common.Core.Entities.Test.ClientEntity", null)
                         .WithMany("Addresses")
                         .HasForeignKey("ClientEntityId");
                 });
 
-            modelBuilder.Entity("DataLayer.Common.Core.Entities.Test.ClientEntity", b =>
+            modelBuilder.Entity("MoravianStar_Demo.Common.Core.Entities.Test.ClientEntity", b =>
                 {
-                    b.HasOne("DataLayer.Common.Core.Entities.Test.AddressEntity", "MainAddress")
+                    b.HasOne("MoravianStar_Demo.Common.Core.Entities.Test.AddressEntity", "MainAddress")
                         .WithMany()
                         .HasForeignKey("MainAddressId");
 
@@ -151,13 +149,13 @@ namespace DataLayer.Persistence.Migrations.DataLayer_System
 
             modelBuilder.Entity("ClientVehicle", b =>
                 {
-                    b.HasOne("DataLayer.Common.Core.Entities.Test.VehicleEntity", "Client")
+                    b.HasOne("MoravianStar_Demo.Common.Core.Entities.Test.ClientEntity", "Client")
                         .WithMany()
                         .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DataLayer.Common.Core.Entities.Test.ClientEntity", "Vehicle")
+                    b.HasOne("MoravianStar_Demo.Common.Core.Entities.Test.VehicleEntity", "Vehicle")
                         .WithMany()
                         .HasForeignKey("VehicleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -168,7 +166,7 @@ namespace DataLayer.Persistence.Migrations.DataLayer_System
                     b.Navigation("Vehicle");
                 });
 
-            modelBuilder.Entity("DataLayer.Common.Core.Entities.Test.ClientEntity", b =>
+            modelBuilder.Entity("MoravianStar_Demo.Common.Core.Entities.Test.ClientEntity", b =>
                 {
                     b.Navigation("Addresses");
                 });

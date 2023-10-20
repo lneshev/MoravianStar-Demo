@@ -20,17 +20,17 @@ namespace MoravianStar_Demo.Persistence.DbContexts
     /// <b>Put here all db objects as usual, except for SQL synonyms. In this context they should be defined as views, so that no code is generated in the migrations for them!<br/>
     /// Use this DbContext for DDL operations and creating migrations.</b>
     /// </summary>
-    public class DataLayer_ClientContext : DbContext
+    public class ClientContext : DbContext
     {
-        public DataLayer_ClientContext()
+        public ClientContext()
         {
         }
 
-        public DataLayer_ClientContext(DbContextOptions<DataLayer_ClientContext> options) : base(options)
+        public ClientContext(DbContextOptions<ClientContext> options) : base(options)
         {
         }
 
-        protected DataLayer_ClientContext(DbContextOptions options) : base(options)
+        protected ClientContext(DbContextOptions options) : base(options)
         {
         }
 
@@ -69,7 +69,7 @@ namespace MoravianStar_Demo.Persistence.DbContexts
 
             modelBuilder.ApplyConfigurationsFromAssembly(
                 GetType().Assembly,
-                x => x.GetCustomAttributes<ForDbContextAttribute>().FirstOrDefault(y => y.DbContextType == typeof(DataLayer_ClientContext)) != null);
+                x => x.GetCustomAttributes<ForDbContextAttribute>().FirstOrDefault(y => y.DbContextType == typeof(ClientContext)) != null);
         }
 
         private void OnBeforeSaving()
@@ -100,9 +100,9 @@ namespace MoravianStar_Demo.Persistence.DbContexts
     /// <b>Here do not put any db objects and logics, except for SQL synonyms. In this context they should be defined as tables, so that they can be corectly recognized as entities!<br/>
     /// Use this DbContext for DML operations.</b>
     /// </summary>
-    public class DataLayer_ClientDMLContext : DataLayer_ClientContext
+    public class ClientDMLContext : ClientContext
     {
-        public DataLayer_ClientDMLContext(DbContextOptions<DataLayer_ClientDMLContext> options) : base(options)
+        public ClientDMLContext(DbContextOptions<ClientDMLContext> options) : base(options)
         {
         }
 
@@ -113,7 +113,7 @@ namespace MoravianStar_Demo.Persistence.DbContexts
             // Add the synonyms here as tables, so that the context work with them like tables
             modelBuilder.ApplyConfigurationsFromAssembly(
                 GetType().Assembly,
-                x => x.GetCustomAttributes<ForDbContextAttribute>().FirstOrDefault(y => y.DbContextType == typeof(DataLayer_SystemContext) && y.IsSynonymInTheOtherContext) != null);
+                x => x.GetCustomAttributes<ForDbContextAttribute>().FirstOrDefault(y => y.DbContextType == typeof(SystemContext) && y.IsSynonymInTheOtherContext) != null);
 
             modelBuilder.ManyToMany<ClientEntity, VehicleEntity>(x => x.Vehicles, x => x.Clients, "ClientId", "VehicleId", DbSchemaConstants.ClientVehicle);
         }

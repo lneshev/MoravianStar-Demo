@@ -6,13 +6,18 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MoravianStar.Dao;
+using MoravianStar.Settings;
 using MoravianStar.WebAPI.Attributes;
+using MoravianStar.WebAPI.Extensions;
 using MoravianStar.WebAPI.JsonConverters;
-using MoravianStar.WebAPI.Middlewares;
 using MoravianStar.WebAPI.ModelBinders;
 using MoravianStar.WebAPI.Swagger;
 using MoravianStar.WebAPI.Transformers;
+using MoravianStar_Demo.Common.Core.Entities.Test;
 using MoravianStar_Demo.Persistence.DbContexts;
+using MoravianStar_Demo.Web.Core.Models.Test;
+using MoravianStar_Demo.Web.Services.Test;
 using MoravianStar_Demo.Web.WebAPI.Infrastructure.Attributes;
 using MoravianStar_Demo.Web.WebAPI.Infrastructure.Constants;
 using NetTopologySuite.IO;
@@ -77,9 +82,9 @@ namespace MoravianStar_Demo.Web.WebAPI
             });
 
             services
-                .AddDbContextPool<DataLayer_SystemContext>(options =>
+                .AddDbContextPool<SystemContext>(options =>
                 {
-                    options.UseSqlServer(configuration["ConnectionStrings:TestSystem"], sqlServerOptions =>
+                    options.UseSqlServer(configuration["ConnectionStrings:System"], sqlServerOptions =>
                     {
                         sqlServerOptions.UseNetTopologySuite();
                     });
@@ -88,7 +93,7 @@ namespace MoravianStar_Demo.Web.WebAPI
             // Do not register it as a pooled DbContext, because the connection string is set upon the authentication.
             // It is not tested, but probably DbContext pooling will not work (or will have side effects) in this case.
             services
-                .AddDbContext<DataLayer_ClientDMLContext>(options =>
+                .AddDbContext<ClientDMLContext>(options =>
                 {
                     options.UseSqlServer(".", sqlServerOptions =>
                     {
@@ -96,14 +101,14 @@ namespace MoravianStar_Demo.Web.WebAPI
                     });
                 });
 
-            //services.AddTransient<IRepository<DataLayer_SystemContext>, SystemRepository>();
-            //services.AddTransient<IRepository<DataLayer_ClientDMLContext>, ClientRepository>();
+            services.AddScoped<IDbTransaction<SystemContext>, DbTransaction<SystemContext>>();
+            services.AddScoped<IDbTransaction<ClientDMLContext>, DbTransaction<ClientDMLContext>>();
 
-            //services.AddTransient<ISystemModelService<ClientEntity, int, ClientModel>, ClientModelService>();
-            //services.AddTransient<ISystemModelService<ClientEntity, int, ClientModel2>, ClientModel2Service>();
-            //services.AddTransient<ISystemModelService<ClientEntity, int, ClientModel3>, ClientModel3Service>();
-            //services.AddTransient<ISystemModelService<AddressEntity, Guid, AddressModel>, AddressModelService>();
-            //services.AddTransient<IClientModelService<BlockEntity, int, BlockModel>, BlockModelService>();
+            services.AddTransient<IModelsMappingService<AddressModel, AddressEntity>, AddressModelMappingService>();
+            services.AddTransient<IModelsMappingService<ClientModel, ClientEntity>, ClientModelMappingService>();
+            services.AddTransient<IModelsMappingService<ClientModel2, ClientEntity>, ClientModel2MappingService>();
+            services.AddTransient<IModelsMappingService<ClientModel3, ClientEntity>, ClientModel3MappingService>();
+            services.AddTransient<IModelsMappingService<BlockModel, BlockEntity>, BlockModelMappingService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -111,12 +116,15 @@ namespace MoravianStar_Demo.Web.WebAPI
         {
             if (env.IsDevelopment())
             {
+                app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI();
-                app.UseDeveloperExceptionPage();
             }
 
-            app.UseMiddleware<ExceptionMiddleware>(env);
+            app.UseMoravianStar(env, () =>
+            {
+                Settings.DefaultDbContextType = typeof(SystemContext);
+            });
 
             app.UseHttpsRedirection();
             app.UseRouting();

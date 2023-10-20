@@ -1,20 +1,13 @@
-﻿using DataLayer.Common.Core.Entities.Test;
-using DataLayer.Common.Core.Interfaces;
-using DataLayer.Common.Core.Projections;
-using DataLayer.Common.Services;
-using DataLayer.Web.Core.Models.Test;
-using DataLayer.Persistence.DbContexts;
+﻿using MoravianStar.Dao;
+using MoravianStar_Demo.Common.Core.Entities.Test;
+using MoravianStar_Demo.Web.Core.Models.Test;
 using System;
 using System.Linq.Expressions;
 
 namespace MoravianStar_Demo.Web.Services.Test
 {
-    public class BlockModelService : ClientModelService<BlockEntity, int, BlockModel>
+    public class BlockModelMappingService : ModelsMappingService<BlockModel, BlockEntity>
     {
-        public BlockModelService(IRepository<DataLayer_ClientDMLContext> repository) : base(repository)
-        {
-        }
-
         public override Expression<Func<BlockEntity, IProjectionBase>> Project()
         {
             return entity => new BlockModel()

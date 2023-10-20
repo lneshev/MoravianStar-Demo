@@ -4,7 +4,7 @@ using NetTopologySuite.Geometries;
 
 #nullable disable
 
-namespace DataLayer.Persistence.Migrations.DataLayer_Client
+namespace MoravianStar_Demo.Persistence.Migrations.Client
 {
     public partial class Initial : Migration
     {

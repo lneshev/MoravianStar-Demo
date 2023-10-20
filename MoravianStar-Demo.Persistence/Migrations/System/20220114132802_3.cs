@@ -2,14 +2,14 @@
 
 #nullable disable
 
-namespace DataLayer.Persistence.Migrations.DataLayer_System
+namespace MoravianStar_Demo.Persistence.Migrations.System
 {
-    public partial class _2 : Migration
+    public partial class _3 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.Sql(@"
-                INSERT INTO Client ([Name], Status) values ('You shall pass!', 1)
+                --INSERT INTO Client ([Name], Status) values ('You shall not pass! Because it is loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooonger than 100 chars.', 1)
             ");
         }
 

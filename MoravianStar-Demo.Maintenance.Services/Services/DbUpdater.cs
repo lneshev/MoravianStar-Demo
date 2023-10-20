@@ -21,15 +21,15 @@ namespace MoravianStar_Demo.Maintenance.Services.Services
     public class DbUpdater : IDbUpdater
     {
         private readonly IConfiguration configuration;
-        private readonly DataLayer_SystemContext systemDbContext;
-        private readonly IDbContextFactory<DataLayer_ClientContext> clientDbContextFactory;
-        private readonly IDbContextFactory<DataLayer_ClientDMLContext> clientDMLDbContextFactory;
+        private readonly SystemContext systemDbContext;
+        private readonly IDbContextFactory<ClientContext> clientDbContextFactory;
+        private readonly IDbContextFactory<ClientDMLContext> clientDMLDbContextFactory;
 
         public DbUpdater(
             IConfiguration configuration,
-            DataLayer_SystemContext systemDbContext,
-            IDbContextFactory<DataLayer_ClientContext> clientDbContextFactory,
-            IDbContextFactory<DataLayer_ClientDMLContext> clientDMLDbContextFactory)
+            SystemContext systemDbContext,
+            IDbContextFactory<ClientContext> clientDbContextFactory,
+            IDbContextFactory<ClientDMLContext> clientDMLDbContextFactory)
         {
             this.configuration = configuration;
             this.systemDbContext = systemDbContext;
@@ -107,7 +107,7 @@ namespace MoravianStar_Demo.Maintenance.Services.Services
 
         private async Task MigrateAndSeedEmptyDB()
         {
-            var emptyDbConnectionString = configuration["ConnectionStrings:TestEmpty"];
+            var emptyDbConnectionString = configuration["ConnectionStrings:Empty"];
 
             using (var emptyDbContext = await clientDbContextFactory.CreateDbContextAsync())
             {
@@ -173,7 +173,7 @@ namespace MoravianStar_Demo.Maintenance.Services.Services
 
         private async Task MigrateAndSeedClientDB(int clientId)
         {
-            var clientDbConnectionString = string.Format(configuration["ConnectionStrings:TestClient"], clientId);
+            var clientDbConnectionString = string.Format(configuration["ConnectionStrings:Client"], clientId);
 
             using (var clientDbContext = await clientDbContextFactory.CreateDbContextAsync())
             {
@@ -204,7 +204,7 @@ namespace MoravianStar_Demo.Maintenance.Services.Services
             }
         }
 
-        private async Task SeedSystemDbAsync(DataLayer_SystemContext systemDbContext)
+        private async Task SeedSystemDbAsync(SystemContext systemDbContext)
         {
             var languageExist = await systemDbContext.Set<LanguageEntity>().AnyAsync();
             if (!languageExist)
@@ -269,7 +269,7 @@ namespace MoravianStar_Demo.Maintenance.Services.Services
             await systemDbContext.SaveChangesAsync();
         }
 
-        private async Task SeedEmptyDbAsync(DataLayer_ClientDMLContext emptyDMLDbContext)
+        private async Task SeedEmptyDbAsync(ClientDMLContext emptyDMLDbContext)
         {
             // Create example: Create a new client in the system DB using empty (client) DbContext
             var client = new ClientEntity()
@@ -299,7 +299,7 @@ namespace MoravianStar_Demo.Maintenance.Services.Services
             await emptyDMLDbContext.SaveChangesAsync();
         }
 
-        private async Task SeedClientDbAsync(DataLayer_ClientDMLContext emptyDMLDbContext, int clientId)
+        private async Task SeedClientDbAsync(ClientDMLContext emptyDMLDbContext, int clientId)
         {
             await SeedEmptyDbAsync(emptyDMLDbContext);
         }

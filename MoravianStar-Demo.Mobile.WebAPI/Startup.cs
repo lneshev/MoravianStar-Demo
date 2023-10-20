@@ -1,6 +1,7 @@
 ﻿//using DataAnnotatedModelValidations;
 using GraphQL.Server.Ui.Voyager;
 using HotChocolate;
+using HotChocolate.Data;
 using HotChocolate.Types;
 using HotChocolate.Types.Pagination;
 using Microsoft.AspNetCore.Builder;
@@ -9,7 +10,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using MoravianStar.WebAPI.GraphQL.Validation;
+using MoravianStar.Dao;
+using MoravianStar.GraphQL.Validation;
+using MoravianStar.Settings;
 using MoravianStar_Demo.Mobile.Services.GraphQL;
 using MoravianStar_Demo.Mobile.Services.GraphQL.Mutations.Test;
 using MoravianStar_Demo.Mobile.Services.GraphQL.Queries.Test;
@@ -31,16 +34,16 @@ namespace MoravianStar_Demo.Mobile.WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services
-                .AddPooledDbContextFactory<DataLayer_SystemContext>(options =>
+                .AddDbContextPool<SystemContext>(options =>
                 {
-                    options.UseSqlServer(configuration["ConnectionStrings:TestSystem"], sqlServerOptions =>
+                    options.UseSqlServer(configuration["ConnectionStrings:System"], sqlServerOptions =>
                     {
                         sqlServerOptions.UseNetTopologySuite();
                     });
                 });
 
             services
-                .AddDbContextFactory<DataLayer_ClientDMLContext>(options =>
+                .AddDbContext<ClientDMLContext>(options =>
                 {
                     options.UseSqlServer(".", sqlServerOptions =>
                     {
@@ -60,7 +63,7 @@ namespace MoravianStar_Demo.Mobile.WebAPI
                 .AddSpatialTypes()
                 .AddSpatialProjections()
                 .AddSpatialFiltering()
-                .AddHttpRequestInterceptor<DataLayerHttpRequestInterceptor>()
+                .AddHttpRequestInterceptor<ClientContextHttpRequestInterceptor>()
                 .AddMutationConventions(new MutationConventionOptions()
                 {
                     ApplyToAllMutations = false
@@ -81,7 +84,13 @@ namespace MoravianStar_Demo.Mobile.WebAPI
                 // Types:
                 //It is not necessary to create types for all entities, like for LanguageEntity.
                 .AddType<ClientType>()
-                .AddType<VehicleType>();
+                .AddType<VehicleType>()
+                //.AddTypeExtension<A>()
+                .RegisterDbContext<SystemContext>(DbContextKind.Synchronized)
+                .RegisterDbContext<ClientDMLContext>(DbContextKind.Synchronized);
+
+            services.AddScoped<IDbTransaction<SystemContext>, DbTransaction<SystemContext>>();
+            services.AddScoped<IDbTransaction<ClientDMLContext>, DbTransaction<ClientDMLContext>>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -92,10 +101,10 @@ namespace MoravianStar_Demo.Mobile.WebAPI
                 app.UseDeveloperExceptionPage();
             }
 
+            Settings.DefaultDbContextType = typeof(SystemContext);
+
             app.UseHttpsRedirection();
-
             app.UseRouting();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGraphQL();
@@ -105,6 +114,16 @@ namespace MoravianStar_Demo.Mobile.WebAPI
             {
                 GraphQLEndPoint = "/graphql"
             }, "/graphql-voyager");
+        }
+    }
+
+    public class A : ObjectTypeExtension
+    {
+        protected override void Configure(IObjectTypeDescriptor descriptor)
+        {
+            base.Configure(descriptor);
+
+            //descriptor.Ignore(x => x.Name);
         }
     }
 }

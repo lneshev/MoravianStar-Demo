@@ -1,13 +1,13 @@
 ﻿There are two DbContexts in this solution by which migrations can be added.
 
-By "DataLayer_SystemContext" migrations for the system database can be added.
-By "DataLayer_ClientContext" migrations for the empty and client databases can be added.
+By "SystemContext" migrations for the system database can be added.
+By "ClientContext" migrations for the empty and client databases can be added.
 
 To add a migration for the system database, use the following command:
-Add-Migration [MIGRATION_NAME] -Context DataLayer_SystemContext -OutputDir "Migrations\DataLayer_System"
+Add-Migration [MIGRATION_NAME] -Context SystemContext -OutputDir "Migrations\System"
 
 To add a migration for the empty and client databases, use the following command:
-Add-Migration [MIGRATION_NAME] -Context DataLayer_ClientContext -OutputDir "Migrations\DataLayer_Client"
+Add-Migration [MIGRATION_NAME] -Context ClientContext -OutputDir "Migrations\Client"
 
 IMPORTANT!
 1. Normally, when adding a new entity or a reference to another system entity as a property or collection, a migration for the system database should be created.
