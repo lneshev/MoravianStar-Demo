@@ -110,20 +110,10 @@ namespace MoravianStar_Demo.Mobile.WebAPI
                 endpoints.MapGraphQL();
             });
 
-            app.UseGraphQLVoyager(new VoyagerOptions()
+            app.UseGraphQLVoyager("/graphql-voyager", new VoyagerOptions()
             {
                 GraphQLEndPoint = "/graphql"
-            }, "/graphql-voyager");
-        }
-    }
-
-    public class A : ObjectTypeExtension
-    {
-        protected override void Configure(IObjectTypeDescriptor descriptor)
-        {
-            base.Configure(descriptor);
-
-            //descriptor.Ignore(x => x.Name);
+            });
         }
     }
 }
