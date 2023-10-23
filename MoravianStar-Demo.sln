@@ -5,30 +5,30 @@ VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoravianStar-Demo.Common.Core", "MoravianStar-Demo.Common.Core\MoravianStar-Demo.Common.Core.csproj", "{DE100706-58E2-4EE9-A7CA-E542182F56F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoravianStar-Demo.Common.Services", "MoravianStar-Demo.Common.Services\MoravianStar-Demo.Common.Services.csproj", "{6BCAA143-D616-47D4-98F4-217422330948}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoravianStar-Demo.Common.Services", "MoravianStar-Demo.Common.Services\MoravianStar-Demo.Common.Services.csproj", "{6BCAA143-D616-47D4-98F4-217422330948}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoravianStar-Demo.Mobile.Core", "MoravianStar-Demo.Mobile.Core\MoravianStar-Demo.Mobile.Core.csproj", "{A28E3A4E-0A09-4A83-B624-1503B0B21CFA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoravianStar-Demo.Mobile.Core", "MoravianStar-Demo.Mobile.Core\MoravianStar-Demo.Mobile.Core.csproj", "{A28E3A4E-0A09-4A83-B624-1503B0B21CFA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoravianStar-Demo.Mobile.Services", "MoravianStar-Demo.Mobile.Services\MoravianStar-Demo.Mobile.Services.csproj", "{24030B3E-A883-4E34-8AFA-E5CA68A5948A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoravianStar-Demo.Mobile.Services", "MoravianStar-Demo.Mobile.Services\MoravianStar-Demo.Mobile.Services.csproj", "{24030B3E-A883-4E34-8AFA-E5CA68A5948A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoravianStar-Demo.Mobile.WebAPI", "MoravianStar-Demo.Mobile.WebAPI\MoravianStar-Demo.Mobile.WebAPI.csproj", "{8834BCFE-A06B-4E2D-85D8-2EB8E217C873}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoravianStar-Demo.Mobile.WebAPI", "MoravianStar-Demo.Mobile.WebAPI\MoravianStar-Demo.Mobile.WebAPI.csproj", "{8834BCFE-A06B-4E2D-85D8-2EB8E217C873}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoravianStar-Demo.Web.Core", "MoravianStar-Demo.Web.Core\MoravianStar-Demo.Web.Core.csproj", "{CB6C2B39-328D-4584-8394-4E09F4A20731}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoravianStar-Demo.Web.Core", "MoravianStar-Demo.Web.Core\MoravianStar-Demo.Web.Core.csproj", "{CB6C2B39-328D-4584-8394-4E09F4A20731}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoravianStar-Demo.Web.Services", "MoravianStar-Demo.Web.Services\MoravianStar-Demo.Web.Services.csproj", "{B5DE6376-9106-4E38-8679-D3B5E63AED0B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoravianStar-Demo.Web.Services", "MoravianStar-Demo.Web.Services\MoravianStar-Demo.Web.Services.csproj", "{B5DE6376-9106-4E38-8679-D3B5E63AED0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoravianStar-Demo.Web.WebAPI", "MoravianStar-Demo.Web.WebAPI\MoravianStar-Demo.Web.WebAPI.csproj", "{4C358F9A-6F3D-438B-842A-5AD18E613A95}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoravianStar-Demo.Web.WebAPI", "MoravianStar-Demo.Web.WebAPI\MoravianStar-Demo.Web.WebAPI.csproj", "{4C358F9A-6F3D-438B-842A-5AD18E613A95}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoravianStar-Demo.Persistence", "MoravianStar-Demo.Persistence\MoravianStar-Demo.Persistence.csproj", "{5CEBB276-8670-4BF0-BB15-7E641903DD14}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoravianStar-Demo.Persistence", "MoravianStar-Demo.Persistence\MoravianStar-Demo.Persistence.csproj", "{5CEBB276-8670-4BF0-BB15-7E641903DD14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoravianStar-Demo.Maintenance.WebAPI", "MoravianStar-Demo.Maintenance.WebAPI\MoravianStar-Demo.Maintenance.WebAPI.csproj", "{879450DB-0DAE-4F80-BA71-D61FA02692DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoravianStar-Demo.Maintenance.WebAPI", "MoravianStar-Demo.Maintenance.WebAPI\MoravianStar-Demo.Maintenance.WebAPI.csproj", "{879450DB-0DAE-4F80-BA71-D61FA02692DB}"
 	ProjectSection(ProjectDependencies) = postProject
 		{9982F428-EAA6-48DE-A6C2-7E508ED65293} = {9982F428-EAA6-48DE-A6C2-7E508ED65293}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoravianStar-Demo.Maintenance.Core", "MoravianStar-Demo.Maintenance.Core\MoravianStar-Demo.Maintenance.Core.csproj", "{2D2E5AAC-DF7A-40B2-B42E-DD9E8B826D3F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoravianStar-Demo.Maintenance.Core", "MoravianStar-Demo.Maintenance.Core\MoravianStar-Demo.Maintenance.Core.csproj", "{2D2E5AAC-DF7A-40B2-B42E-DD9E8B826D3F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoravianStar-Demo.Maintenance.Services", "MoravianStar-Demo.Maintenance.Services\MoravianStar-Demo.Maintenance.Services.csproj", "{9982F428-EAA6-48DE-A6C2-7E508ED65293}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoravianStar-Demo.Maintenance.Services", "MoravianStar-Demo.Maintenance.Services\MoravianStar-Demo.Maintenance.Services.csproj", "{9982F428-EAA6-48DE-A6C2-7E508ED65293}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
