@@ -30,6 +30,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoravianStar-Demo.Maintenan
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoravianStar-Demo.Maintenance.Services", "MoravianStar-Demo.Maintenance.Services\MoravianStar-Demo.Maintenance.Services.csproj", "{9982F428-EAA6-48DE-A6C2-7E508ED65293}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoravianStar-Demo.Common.Jobs", "MoravianStar-Demo.Common.Jobs\MoravianStar-Demo.Common.Jobs.csproj", "{DFF34219-0D8C-4955-B020-90C0441A6B39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoravianStar-Demo.Job.WebAPI", "MoravianStar-Demo.Job.WebAPI\MoravianStar-Demo.Job.WebAPI.csproj", "{AEBCFEA6-1022-466C-815B-EA50C5CAD39B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -84,6 +88,14 @@ Global
 		{9982F428-EAA6-48DE-A6C2-7E508ED65293}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9982F428-EAA6-48DE-A6C2-7E508ED65293}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9982F428-EAA6-48DE-A6C2-7E508ED65293}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFF34219-0D8C-4955-B020-90C0441A6B39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFF34219-0D8C-4955-B020-90C0441A6B39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFF34219-0D8C-4955-B020-90C0441A6B39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFF34219-0D8C-4955-B020-90C0441A6B39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEBCFEA6-1022-466C-815B-EA50C5CAD39B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEBCFEA6-1022-466C-815B-EA50C5CAD39B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEBCFEA6-1022-466C-815B-EA50C5CAD39B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEBCFEA6-1022-466C-815B-EA50C5CAD39B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
