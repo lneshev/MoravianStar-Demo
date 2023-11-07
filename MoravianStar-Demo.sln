@@ -30,9 +30,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoravianStar-Demo.Maintenan
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoravianStar-Demo.Maintenance.Services", "MoravianStar-Demo.Maintenance.Services\MoravianStar-Demo.Maintenance.Services.csproj", "{9982F428-EAA6-48DE-A6C2-7E508ED65293}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoravianStar-Demo.Common.Jobs", "MoravianStar-Demo.Common.Jobs\MoravianStar-Demo.Common.Jobs.csproj", "{DFF34219-0D8C-4955-B020-90C0441A6B39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoravianStar-Demo.Common.Jobs", "MoravianStar-Demo.Common.Jobs\MoravianStar-Demo.Common.Jobs.csproj", "{DFF34219-0D8C-4955-B020-90C0441A6B39}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoravianStar-Demo.Job.WebAPI", "MoravianStar-Demo.Job.WebAPI\MoravianStar-Demo.Job.WebAPI.csproj", "{AEBCFEA6-1022-466C-815B-EA50C5CAD39B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoravianStar-Demo.Job.WebAPI", "MoravianStar-Demo.Job.WebAPI\MoravianStar-Demo.Job.WebAPI.csproj", "{AEBCFEA6-1022-466C-815B-EA50C5CAD39B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
