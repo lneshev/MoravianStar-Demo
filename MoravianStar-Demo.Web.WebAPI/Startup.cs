@@ -14,7 +14,9 @@ using MoravianStar.WebAPI.JsonConverters;
 using MoravianStar.WebAPI.ModelBinders;
 using MoravianStar.WebAPI.Swagger;
 using MoravianStar.WebAPI.Transformers;
+using MoravianStar_Demo.Common.Core.Configuration;
 using MoravianStar_Demo.Common.Core.Entities.Test;
+using MoravianStar_Demo.Common.Services.Test;
 using MoravianStar_Demo.Persistence.DbContexts;
 using MoravianStar_Demo.Web.Core.Models.Test;
 using MoravianStar_Demo.Web.Services.Test;
@@ -37,6 +39,12 @@ namespace MoravianStar_Demo.Web.WebAPI
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            var applicationsConfigSection = configuration.GetSection(nameof(ApplicationsConfiguration));
+            services.Configure<ApplicationsConfiguration>(options =>
+            {
+                options.JobWebAPI = applicationsConfigSection.GetSection(nameof(ApplicationsConfiguration.JobWebAPI)).Get<ApplicationConfiguration>();
+            });
+
             services.AddControllers(options =>
                     {
                         options.Conventions.Add(new RouteTokenTransformerConvention(new SlugifyParameterTransformer()));
@@ -109,6 +117,10 @@ namespace MoravianStar_Demo.Web.WebAPI
             services.AddTransient<IModelsMappingService<ClientModel2, ClientEntity>, ClientModel2MappingService>();
             services.AddTransient<IModelsMappingService<ClientModel3, ClientEntity>, ClientModel3MappingService>();
             services.AddTransient<IModelsMappingService<BlockModel, BlockEntity>, BlockModelMappingService>();
+
+            services.AddTransient<IEntitySaved<ClientEntity>, ClientSaved>();
+
+            services.AddTransient<IExampleJobSender, ExampleJobSender>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

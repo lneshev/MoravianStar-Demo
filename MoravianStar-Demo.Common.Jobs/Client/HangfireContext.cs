@@ -9,7 +9,8 @@ namespace MoravianStar_Demo.Common.Jobs.Client
     /// </summary>
     public class HangfireContext : DbContext
     {
-        public HangfireContext(DbContextOptions options) : base(options)
+        public HangfireContext(DbContextOptions<HangfireContext> options)
+            : base(options)
         {
         }
     }

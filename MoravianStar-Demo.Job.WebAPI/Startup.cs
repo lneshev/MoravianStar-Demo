@@ -1,19 +1,27 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MoravianStar.Dao;
+using MoravianStar.Settings;
+using MoravianStar.WebAPI.Extensions;
 using MoravianStar.WebAPI.Swagger;
 using MoravianStar_Demo.Common.Jobs.Client;
 using MoravianStar_Demo.Common.Jobs.Client.SqlServer;
 using MoravianStar_Demo.Common.Jobs.Common;
 using MoravianStar_Demo.Common.Jobs.Dashboard;
+using MoravianStar_Demo.Common.Jobs.Jobs;
 using MoravianStar_Demo.Common.Jobs.Server;
 using MoravianStar_Demo.Job.WebAPI.Infrastructure.Constants;
-using System;
+using MoravianStar_Demo.Persistence.DbContexts;
 
 namespace MoravianStar_Demo.Job.WebAPI
 {
+    /// <summary>
+    /// WARNING! The current Hangfire version does NOT support async jobs, so if a job or a filter is trying to async code, it will fail in most of the times!
+    /// </summary>
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -26,13 +34,30 @@ namespace MoravianStar_Demo.Job.WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddHangfireWithSqlServerStorage(Configuration.GetConnectionString("Hangfire"), new SqlServerStorageOptions() { PrepareSchemaIfNecessary = true });
+            services.AddHangfireWithSqlServerStorage(Configuration.GetConnectionString("Hangfire"), new SqlServerStorageOptions() { PrepareSchemaIfNecessary = true }, (sp, gc) =>
+            {
+                Hangfire.GlobalConfigurationExtensions.UseFilter(gc, new MoravianStarAttribute(sp));
+            });
             services.AddHangfireServer();
+
             services.AddControllers();
             services.AddSwaggerGen(options =>
             {
                 options.DocumentFilter<HideInDocsFilter>();
             });
+
+            services
+                .AddDbContextPool<SystemContext>(options =>
+                {
+                    options.UseSqlServer(Configuration["ConnectionStrings:System"], sqlServerOptions =>
+                    {
+                        sqlServerOptions.UseNetTopologySuite();
+                    });
+                });
+
+            services.AddScoped<IDbTransaction<SystemContext>, DbTransaction<SystemContext>>();
+
+            services.AddTransient<IExampleJobProcessor, ExampleJobProcessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +69,11 @@ namespace MoravianStar_Demo.Job.WebAPI
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            app.UseMoravianStar(env, () =>
+            {
+                Settings.DefaultDbContextType = typeof(SystemContext);
+            });
 
             //Dashboard
             app.UseHangfireDashboard("/hangfire", new DashboardOptions() { AppPath = "/swagger" });
@@ -63,15 +93,15 @@ namespace MoravianStar_Demo.Job.WebAPI
 
         private void RegisterCronJobs()
         {
-            var s1 = BackgroundJob.Schedule(() => Console.WriteLine("First task!"), TimeSpan.FromSeconds(20));
+            //var s1 = BackgroundJob.Schedule(() => Console.WriteLine("First task!"), TimeSpan.FromSeconds(20));
             //BackgroundJob.Enqueue(() => kvsService.Import(currentUserId));
-            BackgroundJob.Schedule(() => Console.WriteLine("Hello world from Hangfire 2!"), TimeSpan.FromSeconds(20));
+            //BackgroundJob.Schedule(() => Console.WriteLine("Hello world from Hangfire 2!"), TimeSpan.FromSeconds(20));
 
-            var s2 = BackgroundJob.ContinueJobWith(s1, () => Console.WriteLine("Second task!"));
+            //var s2 = BackgroundJob.ContinueJobWith(s1, () => Console.WriteLine("Second task!"));
             //BackgroundJob.ContinueJobWith<IExampleService>(s2, x => x.ExecuteAsync("gg", CancellationToken.None));
 
-            RecurringJob.AddOrUpdate(JobIds.First, () => Console.WriteLine("First"), Hangfire.Cron.Minutely);
-            RecurringJob.AddOrUpdate(JobIds.Last, () => Console.WriteLine("Last"), Hangfire.Cron.Minutely);
+            //RecurringJob.AddOrUpdate(JobIds.First, () => Console.WriteLine("First"), Hangfire.Cron.Minutely);
+            //RecurringJob.AddOrUpdate(JobIds.Last, () => Console.WriteLine("Last"), Hangfire.Cron.Minutely);
 
             RecurringJob.RemoveJobsDeletedFromCode();
         }

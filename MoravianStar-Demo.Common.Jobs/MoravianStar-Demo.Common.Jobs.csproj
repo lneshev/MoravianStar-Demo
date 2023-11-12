@@ -10,6 +10,11 @@
   <ItemGroup>
     <PackageReference Include="Hangfire" Version="1.8.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.24" />
+    <PackageReference Include="MoravianStar" Version="1.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MoravianStar-Demo.Common.Services\MoravianStar-Demo.Common.Services.csproj" />
   </ItemGroup>
 
 </Project>

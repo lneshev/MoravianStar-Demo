@@ -7,7 +7,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace MoravianStar_Demo.Common.Jobs.Server
+namespace MoravianStar_Demo.Common.Jobs.Client
 {
     /// <summary>
     /// Allows working with reccuring jobs.

@@ -8,11 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MoravianStar.WebAPI" Version="1.2.0" />
+    <PackageReference Include="MoravianStar.WebAPI" Version="1.4.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\MoravianStar-Demo.Common.Jobs\MoravianStar-Demo.Common.Jobs.csproj" />
+    <ProjectReference Include="..\MoravianStar-Demo.Persistence\MoravianStar-Demo.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

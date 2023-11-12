@@ -8,7 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Test\" />
+    <ProjectReference Include="..\MoravianStar-Demo.Common.Core\MoravianStar-Demo.Common.Core.csproj" />
+    <ProjectReference Include="..\MoravianStar-Demo.Persistence\MoravianStar-Demo.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

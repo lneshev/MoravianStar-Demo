@@ -35,7 +35,8 @@ namespace MoravianStar_Demo.Common.Jobs.Client.SqlServer
                     }
                 }
 
-                gc.UseSqlServerStorage(connectionString, sqlServerStorageOptions);
+                gc.SetDataCompatibilityLevel(CompatibilityLevel.Version_180)
+                  .UseSqlServerStorage(connectionString, sqlServerStorageOptions);
 
                 if (configuration != null)
                 {
