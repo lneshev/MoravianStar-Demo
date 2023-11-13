@@ -52,6 +52,12 @@ namespace MoravianStar_Demo.Maintenance.WebAPI
             });
 
             services
+                .AddDbContextPool<LogContext>(options =>
+                {
+                    options.UseSqlServer(configuration["ConnectionStrings:Log"]);
+                });
+
+            services
                 .AddDbContextPool<SystemContext>(options =>
                 {
                     options.UseSqlServer(configuration["ConnectionStrings:System"], sqlServerOptions =>

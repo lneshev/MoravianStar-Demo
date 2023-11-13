@@ -1,3 +1,5 @@
+using ElmahCore.Mvc;
+using ElmahCore.Sql;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -23,6 +25,7 @@ using MoravianStar_Demo.Web.Services.Test;
 using MoravianStar_Demo.Web.WebAPI.Infrastructure.Attributes;
 using MoravianStar_Demo.Web.WebAPI.Infrastructure.Constants;
 using NetTopologySuite.IO;
+using System.Threading.Tasks;
 
 namespace MoravianStar_Demo.Web.WebAPI
 {
@@ -109,6 +112,22 @@ namespace MoravianStar_Demo.Web.WebAPI
                     });
                 });
 
+            services.AddElmah<SqlErrorLog>(options =>
+            {
+                options.OnError = async (httpContext, error) =>
+                {
+                    if (error.Exception != null)
+                    {
+                        error.StatusCode = error.Exception.GetHttpStatusCode();
+                    }
+                    await Task.CompletedTask;
+                };
+                options.ConnectionString = configuration.GetConnectionString("Log");
+                options.SqlServerDatabaseSchemaName = "dbo";
+                options.SqlServerDatabaseTableName = "Elmah";
+                options.OnPermissionCheck = context => true; // context.User.Identity.IsAuthenticated;
+            });
+
             services.AddScoped<IDbTransaction<SystemContext>, DbTransaction<SystemContext>>();
             services.AddScoped<IDbTransaction<ClientDMLContext>, DbTransaction<ClientDMLContext>>();
 
@@ -141,7 +160,10 @@ namespace MoravianStar_Demo.Web.WebAPI
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseCors(CorsPolicyConstants.Default);
+            app.UseAuthentication();
             app.UseAuthorization();
+            app.UseElmah();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

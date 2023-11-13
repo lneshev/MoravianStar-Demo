@@ -14,11 +14,11 @@
         /// </summary>
         Success = 1,
         /// <summary>
-        /// "System" database could not be updated due to an error. The rest of the databases are not modified at all. No action is needed (like restoring DB backups).
+        /// "System" or "Log" databases could not be updated due to an error. The rest of the databases are not modified at all. No action is needed (like restoring DB backups).
         /// </summary>
         FailNoActionNeeded = 2,
         /// <summary>
-        /// "System" database was updated successfully, but some or all of the rest were not. Action is needed (like restoring DB backups), because the environment state is inconsistent.
+        /// "System" and "Log" databases were updated successfully, but some or all of the rest were not. Action is needed (like restoring DB backups), because the environment state is inconsistent.
         /// </summary>
         FailActionNeeded = 3
     }

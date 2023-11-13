@@ -19,9 +19,10 @@ namespace MoravianStar_Demo.Common.Services.Test
 
         public async Task SavedAsync(ClientEntity entity, ClientEntity originalEntity, bool entityWasNew, IDictionary<string, object> additionalParameters = null)
         {
-            MS.Persistence.ForDbContext<SystemContext>().DbTransaction.Committed += async (sender, eventArgs) =>
+            MS.Persistence.ForDbContext<SystemContext>().DbTransaction.Committed += (sender, eventArgs) =>
             {
-                await exampleJobSender.SendJob(new ExampleJobSenderMessage()
+                // Not awaited intentionally. Fire and forget.
+                exampleJobSender.SendJob(new ExampleJobSenderMessage()
                 {
                     ClientId = entity.Id
                 });

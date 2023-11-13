@@ -21,17 +21,20 @@ namespace MoravianStar_Demo.Maintenance.Services.Services
     public class DbUpdater : IDbUpdater
     {
         private readonly IConfiguration configuration;
+        private readonly LogContext logDbContext;
         private readonly SystemContext systemDbContext;
         private readonly IDbContextFactory<ClientContext> clientDbContextFactory;
         private readonly IDbContextFactory<ClientDMLContext> clientDMLDbContextFactory;
 
         public DbUpdater(
             IConfiguration configuration,
+            LogContext logDbContext,
             SystemContext systemDbContext,
             IDbContextFactory<ClientContext> clientDbContextFactory,
             IDbContextFactory<ClientDMLContext> clientDMLDbContextFactory)
         {
             this.configuration = configuration;
+            this.logDbContext = logDbContext;
             this.systemDbContext = systemDbContext;
             this.clientDbContextFactory = clientDbContextFactory;
             this.clientDMLDbContextFactory = clientDMLDbContextFactory;
@@ -42,21 +45,38 @@ namespace MoravianStar_Demo.Maintenance.Services.Services
             var dbsUpdateResult = new DbsUpdateResult();
             dbsUpdateResult.Results.AddRange(new[]
             {
+                new DbUpdateResult() { Name = "Log" },
                 new DbUpdateResult() { Name = "System" },
                 new DbUpdateResult() { Name = "Empty" }
             });
 
             try
             {
-                await MigrateAndSeedSystemDB();
-                dbsUpdateResult.Results.Single(x => x.Name == "System").State = DbUpdateState.Success;
+                await MigrateLogDB();
+                dbsUpdateResult.Results.Single(x => x.Name == "Log").State = DbUpdateState.Success;
             }
             catch (Exception ex)
             {
-                DbUpdateResult dbUpdateResult = dbsUpdateResult.Results.Single(x => x.Name == "System");
+                DbUpdateResult dbUpdateResult = dbsUpdateResult.Results.Single(x => x.Name == "Log");
                 dbUpdateResult.State = DbUpdateState.Fail;
                 dbUpdateResult.Exception = ex;
                 dbsUpdateResult.State = DbsUpdateState.FailNoActionNeeded;
+            }
+
+            if (dbsUpdateResult.State == DbsUpdateState.Unknown)
+            {
+                try
+                {
+                    await MigrateAndSeedSystemDB();
+                    dbsUpdateResult.Results.Single(x => x.Name == "System").State = DbUpdateState.Success;
+                }
+                catch (Exception ex)
+                {
+                    DbUpdateResult dbUpdateResult = dbsUpdateResult.Results.Single(x => x.Name == "System");
+                    dbUpdateResult.State = DbUpdateState.Fail;
+                    dbUpdateResult.Exception = ex;
+                    dbsUpdateResult.State = DbsUpdateState.FailNoActionNeeded;
+                }
             }
 
             if (dbsUpdateResult.State == DbsUpdateState.Unknown)
@@ -86,6 +106,15 @@ namespace MoravianStar_Demo.Maintenance.Services.Services
             }
 
             return dbsUpdateResult;
+        }
+
+        private async Task MigrateLogDB()
+        {
+            var logDbCreator = (IRelationalDatabaseCreator)logDbContext.GetInfrastructure().GetRequiredService<IDatabaseCreator>();
+            if (!await logDbCreator.ExistsAsync())
+            {
+                await logDbCreator.CreateAsync();
+            }
         }
 
         private async Task MigrateAndSeedSystemDB()
