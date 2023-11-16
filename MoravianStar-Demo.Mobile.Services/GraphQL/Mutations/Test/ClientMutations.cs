@@ -15,7 +15,7 @@ namespace MoravianStar_Demo.Mobile.Services.GraphQL.Mutations.Test
     [ExtendObjectType(typeof(Mutation))]
     public class ClientMutations
     {
-        [UseMoravianStar]
+        [UseServiceLocator]
         [GraphQLDescription("Creates a client.")]
         public async Task<ClientEntity> CreateClientAsync(SaveClientInput input)
         {
@@ -39,7 +39,7 @@ namespace MoravianStar_Demo.Mobile.Services.GraphQL.Mutations.Test
             return entity;
         }
 
-        [UseMoravianStar]
+        [UseServiceLocator]
         [UseTransaction(typeof(SystemContext))]
         [GraphQLDescription("Updates a client.")]
         public async Task<ClientEntity> UpdateClientAsync([ID] int id, SaveClientInput input)
@@ -72,7 +72,7 @@ namespace MoravianStar_Demo.Mobile.Services.GraphQL.Mutations.Test
             return entity;
         }
 
-        [UseMoravianStar]
+        [UseServiceLocator]
         [UseTransaction]
         [GraphQLDescription("Deletes a client.")]
         public async Task<bool> DeleteClientAsync([ID] int id)

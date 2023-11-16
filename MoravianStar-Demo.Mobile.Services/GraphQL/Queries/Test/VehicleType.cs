@@ -30,7 +30,7 @@ namespace MoravianStar_Demo.Mobile.Services.GraphQL.Queries.Test
             descriptor
                 .Field("clientsCount")
                 .ResolveWith<Resolvers>(x => x.GetClientsCount2(default!)) // N+1 problem
-                .UseMoravianStar();
+                .UseServiceLocator();
         }
 
         private class Resolvers

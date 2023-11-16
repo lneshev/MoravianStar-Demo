@@ -20,7 +20,7 @@ using MoravianStar_Demo.Persistence.DbContexts;
 namespace MoravianStar_Demo.Job.WebAPI
 {
     /// <summary>
-    /// WARNING! The current Hangfire version does NOT support async jobs, so if a job or a filter is trying to async code, it will fail in most of the times!
+    /// WARNING! The current Hangfire version does NOT support async jobs, so if a job or a filter is trying to execute an async code, it will fail in most of the times!
     /// </summary>
     public class Startup
     {
@@ -36,7 +36,7 @@ namespace MoravianStar_Demo.Job.WebAPI
         {
             services.AddHangfireWithSqlServerStorage(Configuration.GetConnectionString("Hangfire"), new SqlServerStorageOptions() { PrepareSchemaIfNecessary = true }, (sp, gc) =>
             {
-                Hangfire.GlobalConfigurationExtensions.UseFilter(gc, new MoravianStarAttribute(sp));
+                Hangfire.GlobalConfigurationExtensions.UseFilter(gc, new ServiceLocatorAttribute(sp));
             });
             services.AddHangfireServer();
 

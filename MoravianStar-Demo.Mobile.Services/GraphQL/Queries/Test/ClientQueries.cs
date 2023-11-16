@@ -16,7 +16,7 @@ namespace MoravianStar_Demo.Mobile.Services.GraphQL.Queries.Test
     [ExtendObjectType(typeof(Query))]
     public class ClientQueries
     {
-        [UseMoravianStar]
+        [UseServiceLocator]
         [UseOffsetPaging]
         [UseProjection]
         [GraphQLDescription("Gets the queryable clients.")]
@@ -25,14 +25,14 @@ namespace MoravianStar_Demo.Mobile.Services.GraphQL.Queries.Test
             return MS.Persistence.ForDbContext<SystemContext>().ForEntity<ClientEntity>().ReadQuery(filter, sorts, trackable: false);
         }
 
-        [UseMoravianStar]
+        [UseServiceLocator]
         [GraphQLDescription("Returns the count of clients.")]
         public async Task<int> CountClientsAsync(ClientFilter filter)
         {
             return await MS.Persistence.ForDbContext<SystemContext>().ForEntity<ClientEntity>().CountAsync(filter);
         }
 
-        [UseMoravianStar]
+        [UseServiceLocator]
         [GraphQLDescription("Checks if clients exist.")]
         public async Task<bool> ExistClientsAsync(ClientFilter filter)
         {

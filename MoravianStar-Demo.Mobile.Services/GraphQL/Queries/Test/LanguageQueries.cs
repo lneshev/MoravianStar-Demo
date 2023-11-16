@@ -15,7 +15,7 @@ namespace MoravianStar_Demo.Mobile.Services.GraphQL.Queries.Test
     [ExtendObjectType(typeof(Query))]
     public class LanguageQueries
     {
-        [UseMoravianStar]
+        [UseServiceLocator]
         [UseOffsetPaging]
         [UseProjection]
         [GraphQLDescription("Gets the queryable languages.")]

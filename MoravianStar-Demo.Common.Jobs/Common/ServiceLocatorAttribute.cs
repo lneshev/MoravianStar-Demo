@@ -9,13 +9,12 @@ namespace MoravianStar_Demo.Common.Jobs.Common
     /// <summary>
     /// An <see cref="IServerFilter"/> attribute that initializes the <see cref="ServiceLocator"/>.
     /// </summary>
-    public class MoravianStarAttribute : JobFilterAttribute, IServerFilter
+    public class ServiceLocatorAttribute : JobFilterAttribute, IServerFilter
     {
         private readonly IServiceProvider serviceProviderBase;
         private IServiceScope scope;
-        private ServiceLocator serviceLocator;
 
-        public MoravianStarAttribute(IServiceProvider serviceProviderBase)
+        public ServiceLocatorAttribute(IServiceProvider serviceProviderBase)
         {
             this.serviceProviderBase = serviceProviderBase;
         }
@@ -23,13 +22,11 @@ namespace MoravianStar_Demo.Common.Jobs.Common
         public void OnPerforming(PerformingContext context)
         {
             scope = serviceProviderBase.CreateScope();
-            var serviceProvider = scope.ServiceProvider;
-            serviceLocator = new ServiceLocator(serviceProvider);
+            new ServiceLocator(() => scope.ServiceProvider);
         }
 
         public void OnPerformed(PerformedContext context)
         {
-            serviceLocator.Dispose();
             scope.Dispose();
         }
     }

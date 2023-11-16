@@ -16,7 +16,7 @@ namespace MoravianStar_Demo.Mobile.Services.GraphQL.Queries.Test
     [ExtendObjectType(typeof(Query))]
     public class VehicleQueries
     {
-        [UseMoravianStar]
+        [UseServiceLocator]
         [UseOffsetPaging]
         [UseProjection]
         [GraphQLDescription("Gets the queryable vehicles.")]
@@ -26,7 +26,7 @@ namespace MoravianStar_Demo.Mobile.Services.GraphQL.Queries.Test
         }
 
         [Obsolete("To be deleted after the demo.")]
-        [UseMoravianStar]
+        [UseServiceLocator]
         [UseOffsetPaging]
         [UseProjection]
         [UseFiltering(typeof(VehicleFilterType))] // I tried to add custom filter type in order to create custom filters, but no success.

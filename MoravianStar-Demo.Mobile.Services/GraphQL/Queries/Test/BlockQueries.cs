@@ -15,7 +15,7 @@ namespace MoravianStar_Demo.Mobile.Services.GraphQL.Queries.Test
     [ExtendObjectType(typeof(Query))]
     public class BlockQueries
     {
-        [UseMoravianStar]
+        [UseServiceLocator]
         [UseClientDMLContext]
         [UseOffsetPaging]
         [UseProjection]
