@@ -55,6 +55,8 @@ namespace MoravianStar_Demo.Mobile.WebAPI
                 .AddGraphQLServer()
                 .SetPagingOptions(new PagingOptions()
                 {
+                    DefaultPageSize = int.MaxValue - 1,
+                    MaxPageSize = int.MaxValue - 1,
                     IncludeTotalCount = true
                 })
                 .AddProjections()
