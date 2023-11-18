@@ -9,6 +9,7 @@ namespace MoravianStar_Demo.Common.Jobs.Common
     /// <summary>
     /// An <see cref="IServerFilter"/> attribute that initializes the <see cref="ServiceLocator"/>.
     /// </summary>
+    [Obsolete("The current Hangfire version doesn't suport async job execution.")]
     public class ServiceLocatorAttribute : JobFilterAttribute, IServerFilter
     {
         private readonly IServiceProvider serviceProviderBase;

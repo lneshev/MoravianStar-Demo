@@ -10,7 +10,7 @@ namespace MoravianStar_Demo.Common.Jobs.Jobs
     {
         public async Task Process(ExampleJobSenderMessage message)
         {
-            Thread.Sleep(1000);
+            Thread.Sleep(15000);
 
             var client = await MS.Persistence.ForEntity<ClientEntity, int>().GetAsync(message.ClientId);
             if (string.IsNullOrWhiteSpace(client.Description))

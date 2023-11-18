@@ -1,3 +1,5 @@
+using Hangfire;
+using Hangfire.SqlServer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -8,19 +10,20 @@ using MoravianStar.Dao;
 using MoravianStar.Settings;
 using MoravianStar.WebAPI.Extensions;
 using MoravianStar.WebAPI.Swagger;
-using MoravianStar_Demo.Common.Jobs.Client;
+using MoravianStar_Demo.Common.Core.DTOs.Test;
 using MoravianStar_Demo.Common.Jobs.Client.SqlServer;
 using MoravianStar_Demo.Common.Jobs.Common;
-using MoravianStar_Demo.Common.Jobs.Dashboard;
 using MoravianStar_Demo.Common.Jobs.Jobs;
-using MoravianStar_Demo.Common.Jobs.Server;
 using MoravianStar_Demo.Job.WebAPI.Infrastructure.Constants;
 using MoravianStar_Demo.Persistence.DbContexts;
+using JobsClient = MoravianStar_Demo.Common.Jobs.Client;
 
 namespace MoravianStar_Demo.Job.WebAPI
 {
     /// <summary>
     /// WARNING! The current Hangfire version does NOT support async jobs, so if a job or a filter is trying to execute an async code, it will fail in most of the times!
+    /// For this reason, I left filters "ServiceLocatorAttribute" and "ExecuteInTransactionAttribute" commented in the code and created a new custom "flow" that allows executing of
+    /// async code. See: "IJobFlow", "JobFlowBase" and "IJobFlowMiddleware". I hope the async execution to become available in Hangfire 2.0.0 as promised by the author.
     /// </summary>
     public class Startup
     {
@@ -36,9 +39,9 @@ namespace MoravianStar_Demo.Job.WebAPI
         {
             services.AddHangfireWithSqlServerStorage(Configuration.GetConnectionString("Hangfire"), new SqlServerStorageOptions() { PrepareSchemaIfNecessary = true }, (sp, gc) =>
             {
-                Hangfire.GlobalConfigurationExtensions.UseFilter(gc, new ServiceLocatorAttribute(sp));
+                //gc.UseFilter(new ServiceLocatorAttribute(sp)); // Commented, because the current Hangfire version doesn't suport async job execution
             });
-            services.AddHangfireServer();
+            services.AddHangfireServer(x => { x.WorkerCount = 1; });
 
             services.AddControllers();
             services.AddSwaggerGen(options =>
@@ -57,7 +60,10 @@ namespace MoravianStar_Demo.Job.WebAPI
 
             services.AddScoped<IDbTransaction<SystemContext>, DbTransaction<SystemContext>>();
 
+            services.AddTransient<IExampleJobFlow, ExampleJobFlow>();
             services.AddTransient<IExampleJobProcessor, ExampleJobProcessor>();
+
+            services.AddTransient<IExampleJob2Processor, ExampleJob2Processor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -100,10 +106,10 @@ namespace MoravianStar_Demo.Job.WebAPI
             //var s2 = BackgroundJob.ContinueJobWith(s1, () => Console.WriteLine("Second task!"));
             //BackgroundJob.ContinueJobWith<IExampleService>(s2, x => x.ExecuteAsync("gg", CancellationToken.None));
 
-            //RecurringJob.AddOrUpdate(JobIds.First, () => Console.WriteLine("First"), Hangfire.Cron.Minutely);
-            //RecurringJob.AddOrUpdate(JobIds.Last, () => Console.WriteLine("Last"), Hangfire.Cron.Minutely);
+            JobsClient.RecurringJob.AddOrUpdate<IExampleJobFlow>(JobIds.First, x => x.Process(new ExampleJobSenderMessage() { ClientId = 1 }), Cron.Minutely);
+            //JobsClient.RecurringJob.AddOrUpdate(JobIds.Last, () => Console.WriteLine("Last"), Cron.Minutely);
 
-            RecurringJob.RemoveJobsDeletedFromCode();
+            JobsClient.RecurringJob.RemoveJobsDeletedFromCode();
         }
     }
 }

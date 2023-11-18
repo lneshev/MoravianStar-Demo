@@ -11,9 +11,9 @@ namespace MoravianStar_Demo.Common.Jobs.Common
     /// <summary>
     /// An <see cref="IServerFilter"/> attribute that wraps the flow in a database transaction.
     /// </summary>
+    [Obsolete("The current Hangfire version doesn't suport async job execution.")]
     public class ExecuteInTransactionAttribute : JobFilterAttribute, IServerFilter
     {
-        public Type DbContextType { get; }
         private IDbTransaction dbTransaction;
 
         public ExecuteInTransactionAttribute()
@@ -25,6 +25,8 @@ namespace MoravianStar_Demo.Common.Jobs.Common
         {
             DbContextType = dbContextType;
         }
+
+        public Type DbContextType { get; }
 
         public void OnPerforming(PerformingContext context)
         {
