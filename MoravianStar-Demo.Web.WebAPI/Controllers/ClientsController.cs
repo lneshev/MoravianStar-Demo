@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using MoravianStar.Dao;
+using MoravianStar.WebAPI.Attributes;
 using MoravianStar_Demo.Common.Core.Entities.Test;
 using MoravianStar_Demo.Common.Core.Filters.Test;
 using MoravianStar_Demo.Persistence.DbContexts;
@@ -54,6 +55,7 @@ namespace MoravianStar_Demo.Web.WebAPI.Controllers
             return await base.Post(model);
         }
 
+        [ElmahRaiseLog("Testing a client update.")]
         public override async Task<ActionResult<ClientModel>> Put([FromRoute] int id, [FromBody] ClientModel model)
         {
             return await base.Put(id, model);
