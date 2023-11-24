@@ -17,12 +17,12 @@ namespace MoravianStar_Demo.Mobile.Services.GraphQL
     /// </summary>
     public class UseClientDMLContextAttribute : ObjectFieldDescriptorAttribute
     {
-        public override void OnConfigure(IDescriptorContext context, IObjectFieldDescriptor descriptor, MemberInfo member)
+        protected override void OnConfigure(IDescriptorContext context, IObjectFieldDescriptor descriptor, MemberInfo member)
         {
             descriptor.Extend().Definition.MiddlewareDefinitions.Add(new(next => async context =>
             {
                 var configuration = context.Services.GetRequiredService<IConfiguration>();
-                var clientIdString = context.GetGlobalValue<string>(HTTPHeaderConstants.ClientId);
+                var clientIdString = context.GetGlobalStateOrDefault<string>(HTTPHeaderConstants.ClientId);
 
                 if (!string.IsNullOrWhiteSpace(clientIdString) && int.TryParse(clientIdString, out int clientId))
                 {

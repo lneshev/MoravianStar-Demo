@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="HotChocolate.Data.EntityFramework" Version="12.22.0" />
-    <PackageReference Include="HotChocolate.Data.Spatial" Version="12.22.0" />
+    <PackageReference Include="HotChocolate.Data.EntityFramework" Version="13.7.0" />
+    <PackageReference Include="HotChocolate.Data.Spatial" Version="13.7.0" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,4 +1,4 @@
-﻿//using DataAnnotatedModelValidations;
+﻿using DataAnnotatedModelValidations;
 using GraphQL.Server.Ui.Voyager;
 using HotChocolate;
 using HotChocolate.Data;
@@ -11,7 +11,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MoravianStar.Dao;
-using MoravianStar.GraphQL.Validation;
 using MoravianStar.Settings;
 using MoravianStar_Demo.Mobile.Services.GraphQL;
 using MoravianStar_Demo.Mobile.Services.GraphQL.Mutations.Test;

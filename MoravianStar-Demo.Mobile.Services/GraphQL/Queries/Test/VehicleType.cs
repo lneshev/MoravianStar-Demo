@@ -35,7 +35,7 @@ namespace MoravianStar_Demo.Mobile.Services.GraphQL.Queries.Test
 
         private class Resolvers
         {
-            public int GetClientsCount([Parent] VehicleEntity vehicle, [ScopedService] SystemContext dbContext)
+            public int GetClientsCount([Parent] VehicleEntity vehicle, SystemContext dbContext)
             {
                 // All leads to the N + 1 problem:
                 return dbContext.Set<VehicleEntity>().Where(x => x.Id == vehicle.Id).Select(x => x.Clients.Count).SingleOrDefault();

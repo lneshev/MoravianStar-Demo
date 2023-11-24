@@ -18,7 +18,7 @@ namespace MoravianStar_Demo.Mobile.WebAPI.Infrastructure.HttpRequestInterceptors
             var clientIdString = context.Request.Headers[HTTPHeaderConstants.ClientId].FirstOrDefault();
             if (!string.IsNullOrWhiteSpace(clientIdString))
             {
-                requestBuilder.SetProperty(HTTPHeaderConstants.ClientId, clientIdString);
+                requestBuilder.SetGlobalState(HTTPHeaderConstants.ClientId, clientIdString);
             }
 
             return base.OnCreateAsync(context, requestExecutor, requestBuilder, cancellationToken);

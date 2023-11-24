@@ -1,4 +1,5 @@
-﻿using MoravianStar_Demo.Common.Core.Constants.Test;
+﻿using MoravianStar_Demo.Common.Core.Attributes;
+using MoravianStar_Demo.Common.Core.Constants.Test;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -15,10 +16,10 @@ namespace MoravianStar_Demo.Mobile.Core.GraphQL.Mutations.Test
         public string Description { get; set; }
 
         //[Required]
-        //[ValidateChildProperty]
+        [ValidateChildProperty]
         public SaveAddressInput MainAddress { get; set; }
 
-        //[ValidateChildProperty]
+        [ValidateChildProperty]
         public List<SaveAddressInput> Addresses { get; set; }
     }
 }
