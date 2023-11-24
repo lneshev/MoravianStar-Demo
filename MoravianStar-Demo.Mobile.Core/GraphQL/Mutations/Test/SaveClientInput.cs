@@ -1,4 +1,4 @@
-﻿using MoravianStar_Demo.Common.Core.Attributes;
+﻿using MoravianStar.GraphQL.Attributes;
 using MoravianStar_Demo.Common.Core.Constants.Test;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
