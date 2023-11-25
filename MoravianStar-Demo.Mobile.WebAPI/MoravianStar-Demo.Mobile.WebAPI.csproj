@@ -13,9 +13,11 @@
 
   <ItemGroup>
     <PackageReference Include="DataAnnotatedModelValidations" Version="5.1.0" />
+    <PackageReference Include="ElmahCore" Version="2.1.2" />
+    <PackageReference Include="ElmahCore.Sql" Version="2.1.2" />
     <PackageReference Include="GraphQL.Server.Ui.Voyager" Version="7.6.0" />
     <PackageReference Include="HotChocolate.AspNetCore" Version="13.7.0" />
-    <PackageReference Include="MoravianStar.WebAPI" Version="1.11.0" />
+    <PackageReference Include="MoravianStar.WebAPI" Version="1.12.0" />
   </ItemGroup>
 
   <ItemGroup>

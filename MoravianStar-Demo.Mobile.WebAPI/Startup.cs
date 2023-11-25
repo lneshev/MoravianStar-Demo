@@ -1,4 +1,6 @@
 ﻿using DataAnnotatedModelValidations;
+using ElmahCore.Mvc;
+using ElmahCore.Sql;
 using GraphQL.Server.Ui.Voyager;
 using HotChocolate;
 using HotChocolate.Data;
@@ -11,12 +13,15 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MoravianStar.Dao;
+using MoravianStar.Extensions;
+using MoravianStar.GraphQL.Filters;
 using MoravianStar.Settings;
 using MoravianStar_Demo.Mobile.Services.GraphQL;
 using MoravianStar_Demo.Mobile.Services.GraphQL.Mutations.Test;
 using MoravianStar_Demo.Mobile.Services.GraphQL.Queries.Test;
 using MoravianStar_Demo.Mobile.WebAPI.Infrastructure.HttpRequestInterceptors;
 using MoravianStar_Demo.Persistence.DbContexts;
+using System.Threading.Tasks;
 
 namespace MoravianStar_Demo.Mobile.WebAPI
 {
@@ -50,6 +55,22 @@ namespace MoravianStar_Demo.Mobile.WebAPI
                     });
                 });
 
+            services.AddElmah<SqlErrorLog>(options =>
+            {
+                options.OnError = async (httpContext, error) =>
+                {
+                    if (error.Exception != null)
+                    {
+                        error.StatusCode = error.Exception.GetHttpStatusCode();
+                    }
+                    await Task.CompletedTask;
+                };
+                options.ConnectionString = configuration.GetConnectionString("Log");
+                options.SqlServerDatabaseSchemaName = "dbo";
+                options.SqlServerDatabaseTableName = "Elmah";
+                options.OnPermissionCheck = context => true; // context.User.Identity.IsAuthenticated;
+            });
+
             services
                 .AddGraphQLServer()
                 .SetPagingOptions(new PagingOptions()
@@ -70,6 +91,8 @@ namespace MoravianStar_Demo.Mobile.WebAPI
                     ApplyToAllMutations = false
                 })
                 .AddDataAnnotationsValidator()
+                .AddErrorFilter<ErrorImproverErrorFilter>()
+                .AddErrorFilter<ElmahErrorFilter>()
                 // Queries:
                 .AddQueryType<Query>()
                 .AddTypeExtension<AddressQueries>()
@@ -86,7 +109,6 @@ namespace MoravianStar_Demo.Mobile.WebAPI
                 //It is not necessary to create types for all entities, like for LanguageEntity.
                 .AddType<ClientType>()
                 .AddType<VehicleType>()
-                //.AddTypeExtension<A>()
                 .RegisterDbContext<SystemContext>(DbContextKind.Synchronized)
                 .RegisterDbContext<ClientDMLContext>(DbContextKind.Synchronized);
 
@@ -106,6 +128,8 @@ namespace MoravianStar_Demo.Mobile.WebAPI
 
             app.UseHttpsRedirection();
             app.UseRouting();
+            app.UseElmah();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGraphQL();

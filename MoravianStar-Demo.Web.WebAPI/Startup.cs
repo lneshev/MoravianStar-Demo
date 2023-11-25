@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MoravianStar.Dao;
+using MoravianStar.Extensions;
 using MoravianStar.Settings;
 using MoravianStar.WebAPI.Attributes;
 using MoravianStar.WebAPI.Extensions;
