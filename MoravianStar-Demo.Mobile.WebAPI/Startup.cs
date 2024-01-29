@@ -16,6 +16,7 @@ using MoravianStar.Dao;
 using MoravianStar.Extensions;
 using MoravianStar.GraphQL.Filters;
 using MoravianStar.Settings;
+using MoravianStar_Demo.Common.Core.Enums.Test;
 using MoravianStar_Demo.Common.Core.Resources;
 using MoravianStar_Demo.Mobile.Services.GraphQL;
 using MoravianStar_Demo.Mobile.Services.GraphQL.Mutations.Test;
@@ -127,6 +128,7 @@ namespace MoravianStar_Demo.Mobile.WebAPI
 
             Settings.DefaultDbContextType = typeof(SystemContext);
             Settings.StringResourceTypeForEnums = typeof(Strings);
+            Settings.AssemblyForEnums = typeof(ClientStatus).Assembly;
 
             app.UseHttpsRedirection();
             app.UseRouting();

@@ -97,6 +97,24 @@ namespace MoravianStar_Demo.Common.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ascending.
+        /// </summary>
+        public static string SortDirection_Asc {
+            get {
+                return ResourceManager.GetString("SortDirection_Asc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Descending.
+        /// </summary>
+        public static string SortDirection_Desc {
+            get {
+                return ResourceManager.GetString("SortDirection_Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unknown database provider.
         /// </summary>
         public static string UnknownDatabaseProvider {

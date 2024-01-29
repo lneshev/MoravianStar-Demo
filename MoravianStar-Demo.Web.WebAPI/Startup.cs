@@ -19,6 +19,7 @@ using MoravianStar.WebAPI.Swagger;
 using MoravianStar.WebAPI.Transformers;
 using MoravianStar_Demo.Common.Core.Configuration;
 using MoravianStar_Demo.Common.Core.Entities.Test;
+using MoravianStar_Demo.Common.Core.Enums.Test;
 using MoravianStar_Demo.Common.Core.Resources;
 using MoravianStar_Demo.Common.Services.Test;
 using MoravianStar_Demo.Persistence.DbContexts;
@@ -158,6 +159,7 @@ namespace MoravianStar_Demo.Web.WebAPI
             {
                 Settings.DefaultDbContextType = typeof(SystemContext);
                 Settings.StringResourceTypeForEnums = typeof(Strings);
+                Settings.AssemblyForEnums = typeof(ClientStatus).Assembly;
             });
 
             app.UseHttpsRedirection();

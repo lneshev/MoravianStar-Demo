@@ -5,8 +5,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using MoravianStar.WebAPI.Middlewares;
+using MoravianStar.Settings;
+using MoravianStar.WebAPI.Extensions;
 using MoravianStar.WebAPI.Transformers;
+using MoravianStar_Demo.Common.Core.Resources;
+using MoravianStar_Demo.Maintenance.Core.Enums;
 using MoravianStar_Demo.Maintenance.Services.Services;
 using MoravianStar_Demo.Maintenance.WebAPI.Infrastructure.Constants;
 using MoravianStar_Demo.Persistence.DbContexts;
@@ -97,7 +100,12 @@ namespace MoravianStar_Demo.Maintenance.WebAPI
                 app.UseSwaggerUI();
             }
 
-            app.UseMiddleware<ExceptionMiddleware>(env);
+            app.UseMoravianStar(env, () =>
+            {
+                Settings.DefaultDbContextType = typeof(SystemContext);
+                Settings.StringResourceTypeForEnums = typeof(Strings);
+                Settings.AssemblyForEnums = typeof(DbUpdateState).Assembly;
+            });
 
             app.UseHttpsRedirection();
             app.UseRouting();

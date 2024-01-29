@@ -129,6 +129,12 @@
   <data name="SavingDataToDBWithoutATransactionIsNotAllowed" xml:space="preserve">
     <value>Saving data to a database without a transaction is not allowed. First open a database transaction and then save&amp;commit the changes.</value>
   </data>
+  <data name="SortDirection_Asc" xml:space="preserve">
+    <value>Ascending</value>
+  </data>
+  <data name="SortDirection_Desc" xml:space="preserve">
+    <value>Descending</value>
+  </data>
   <data name="UnknownDatabaseProvider" xml:space="preserve">
     <value>Unknown database provider</value>
   </data>
