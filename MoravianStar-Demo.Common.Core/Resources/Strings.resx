@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ClientStatus_Active" xml:space="preserve">
-    <value>ActiveWWW</value>
+    <value>Active</value>
   </data>
   <data name="ClientStatus_Inactive" xml:space="preserve">
-    <value>InactiveWWW</value>
+    <value>Inactive</value>
   </data>
   <data name="HTTPHeaderClientIdIsRequired" xml:space="preserve">
     <value>HTTP header 'ClientId' is required and should be an integer value.</value>

@@ -61,7 +61,7 @@ namespace MoravianStar_Demo.Common.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ActiveWWW.
+        ///   Looks up a localized string similar to Active.
         /// </summary>
         public static string ClientStatus_Active {
             get {
@@ -70,7 +70,7 @@ namespace MoravianStar_Demo.Common.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to InactiveWWW.
+        ///   Looks up a localized string similar to Inactive.
         /// </summary>
         public static string ClientStatus_Inactive {
             get {
