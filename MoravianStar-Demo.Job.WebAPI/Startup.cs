@@ -11,8 +11,8 @@ using MoravianStar.Settings;
 using MoravianStar.WebAPI.Extensions;
 using MoravianStar.WebAPI.Swagger;
 using MoravianStar_Demo.Common.Core.DTOs.Test;
+using MoravianStar_Demo.Common.Core.Resources;
 using MoravianStar_Demo.Common.Jobs.Client.SqlServer;
-using MoravianStar_Demo.Common.Jobs.Common;
 using MoravianStar_Demo.Common.Jobs.Jobs;
 using MoravianStar_Demo.Job.WebAPI.Infrastructure.Constants;
 using MoravianStar_Demo.Persistence.DbContexts;
@@ -79,6 +79,7 @@ namespace MoravianStar_Demo.Job.WebAPI
             app.UseMoravianStar(env, () =>
             {
                 Settings.DefaultDbContextType = typeof(SystemContext);
+                Settings.StringResourceTypeForEnums = typeof(Strings);
             });
 
             //Dashboard
