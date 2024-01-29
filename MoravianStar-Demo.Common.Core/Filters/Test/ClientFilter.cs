@@ -18,6 +18,8 @@ namespace MoravianStar_Demo.Common.Core.Filters.Test
         public int? AdditionalId { get; set; }
         public Guid? MainAddressId { get; set; }
         public string MainAddressAddressContainsInsensitive { get; set; }
+        public bool? HasMainAddress { get; set; }
+        public bool? HasAdditionalAddress { get; set; }
 
         public override IQueryable<ClientEntity> Filter<TDbContext>(IQueryable<ClientEntity> query, IEntityRepository<ClientEntity, TDbContext> repository)
         {
@@ -55,6 +57,16 @@ namespace MoravianStar_Demo.Common.Core.Filters.Test
             if (!string.IsNullOrEmpty(MainAddressAddressContainsInsensitive))
             {
                 mainCriteria = mainCriteria.And(x => x.MainAddress.Address.ToLower().Contains(MainAddressAddressContainsInsensitive.ToLower()));
+            }
+
+            if (HasMainAddress.HasValue)
+            {
+                mainCriteria = mainCriteria.And(x => x.MainAddressId.HasValue == HasMainAddress);
+            }
+
+            if (HasAdditionalAddress.HasValue)
+            {
+                mainCriteria = mainCriteria.And(x => x.Addresses.Any() == HasAdditionalAddress);
             }
 
             if (AdditionalId.HasValue)
