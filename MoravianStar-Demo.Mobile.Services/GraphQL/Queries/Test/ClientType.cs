@@ -1,5 +1,7 @@
 ﻿using HotChocolate.Types;
+using MoravianStar.Extensions;
 using MoravianStar_Demo.Common.Core.Entities.Test;
+using MoravianStar_Demo.Common.Core.Resources;
 
 namespace MoravianStar_Demo.Mobile.Services.GraphQL.Queries.Test
 {
@@ -22,7 +24,7 @@ namespace MoravianStar_Demo.Mobile.Services.GraphQL.Queries.Test
             // Add custom property in the schema, that doesn't exist in the entity
             descriptor
                 .Field("statusText")
-                .Resolve((context, ct) => context.Parent<ClientEntity>().Status.ToString())
+                .Resolve((context, ct) => context.Parent<ClientEntity>().Status.Translate(typeof(Strings)))
                 .Description("Description of StatusText goes here");
 
             // I tried these resolvers before using [UseProjection] attribute in Query.cs

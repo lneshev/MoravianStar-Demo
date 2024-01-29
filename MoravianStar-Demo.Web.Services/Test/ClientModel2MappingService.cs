@@ -1,5 +1,7 @@
 ﻿using MoravianStar.Dao;
+using MoravianStar.Extensions;
 using MoravianStar_Demo.Common.Core.Entities.Test;
+using MoravianStar_Demo.Common.Core.Resources;
 using MoravianStar_Demo.Web.Core.Models.Test;
 using MoravianStar_Demo.Web.Core.Projections.Test;
 using System;
@@ -12,7 +14,7 @@ namespace MoravianStar_Demo.Web.Services.Test
     {
         public override Expression<Func<ClientEntity, IProjectionBase>> Project()
         {
-            return entity => new ClientProjection2() // ClientEntity
+            return entity => new ClientProjection2()
             {
                 Id = entity.Id,
                 Name = entity.Name,
@@ -22,14 +24,14 @@ namespace MoravianStar_Demo.Web.Services.Test
 
         public override async Task<ClientModel2> MapAsync(IProjectionBase projection)
         {
-            var proj = (ClientProjection2)projection; // ClientEntity
+            var proj = (ClientProjection2)projection;
 
             return await Task.FromResult(new ClientModel2()
             {
                 Id = proj.Id,
                 Name = proj.Name,
                 Status = proj.Status,
-                StatusText = proj.Status.ToString()
+                StatusText = proj.Status.Translate(typeof(Strings))
             });
         }
     }

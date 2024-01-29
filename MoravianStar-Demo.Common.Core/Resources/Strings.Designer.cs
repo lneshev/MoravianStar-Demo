@@ -61,6 +61,24 @@ namespace MoravianStar_Demo.Common.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ActiveWWW.
+        /// </summary>
+        public static string ClientStatus_Active {
+            get {
+                return ResourceManager.GetString("ClientStatus_Active", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to InactiveWWW.
+        /// </summary>
+        public static string ClientStatus_Inactive {
+            get {
+                return ResourceManager.GetString("ClientStatus_Inactive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to HTTP header &apos;ClientId&apos; is required and should be an integer value..
         /// </summary>
         public static string HTTPHeaderClientIdIsRequired {

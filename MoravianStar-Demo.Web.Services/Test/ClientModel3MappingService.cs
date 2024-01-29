@@ -11,7 +11,7 @@ namespace MoravianStar_Demo.Web.Services.Test
     {
         public override Expression<Func<ClientEntity, IProjectionBase>> Project()
         {
-            return entity => new ClientModel3() // ClientEntity
+            return entity => new ClientModel3()
             {
                 Id = entity.Id,
                 Name = entity.Name,
