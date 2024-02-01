@@ -13,9 +13,9 @@ namespace MoravianStar_Demo.Web.Services.Test
             return entity => new BlockModel()
             {
                 Id = entity.Id,
-                ClientName = entity.Client.Name,
+                ClientName = entity.Client != null ? entity.Client.Name : null,
                 Boundaries = entity.Boundaries,
-                BoundariesArea = entity.Boundaries.Area
+                BoundariesArea = entity.Boundaries != null ? entity.Boundaries.Area : null
             };
         }
     }
