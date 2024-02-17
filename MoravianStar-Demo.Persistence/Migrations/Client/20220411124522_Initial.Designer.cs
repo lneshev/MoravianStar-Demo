@@ -16,15 +16,16 @@ namespace MoravianStar_Demo.Persistence.Migrations.Client
     [Migration("20220411124522_Initial")]
     partial class Initial
     {
+        /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .UseCollation("SQL_Latin1_General_CP1_CS_AS")
-                .HasAnnotation("ProductVersion", "6.0.27")
+                .HasAnnotation("ProductVersion", "7.0.16")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("ClientVehicle", b =>
                 {
@@ -38,7 +39,9 @@ namespace MoravianStar_Demo.Persistence.Migrations.Client
 
                     b.HasIndex("VehicleId");
 
-                    b.ToView("ClientVehicle");
+                    b.ToTable((string)null);
+
+                    b.ToView("ClientVehicle", (string)null);
                 });
 
             modelBuilder.Entity("MoravianStar_Demo.Common.Core.Entities.Test.AddressEntity", b =>
@@ -59,7 +62,9 @@ namespace MoravianStar_Demo.Persistence.Migrations.Client
 
                     b.HasIndex("ClientEntityId");
 
-                    b.ToView("Address");
+                    b.ToTable((string)null);
+
+                    b.ToView("Address", (string)null);
                 });
 
             modelBuilder.Entity("MoravianStar_Demo.Common.Core.Entities.Test.BlockEntity", b =>
@@ -68,7 +73,7 @@ namespace MoravianStar_Demo.Persistence.Migrations.Client
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<Polygon>("Boundaries")
                         .HasColumnType("geography");
@@ -90,9 +95,8 @@ namespace MoravianStar_Demo.Persistence.Migrations.Client
             modelBuilder.Entity("MoravianStar_Demo.Common.Core.Entities.Test.ClientEntity", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Description")
                         .HasMaxLength(250)
@@ -113,15 +117,16 @@ namespace MoravianStar_Demo.Persistence.Migrations.Client
 
                     b.HasIndex("MainAddressId");
 
-                    b.ToView("Client");
+                    b.ToTable((string)null);
+
+                    b.ToView("Client", (string)null);
                 });
 
             modelBuilder.Entity("MoravianStar_Demo.Common.Core.Entities.Test.VehicleEntity", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<Point>("CurrentLocation")
                         .HasColumnType("geography");
@@ -133,7 +138,9 @@ namespace MoravianStar_Demo.Persistence.Migrations.Client
 
                     b.HasKey("Id");
 
-                    b.ToView("Vehicle");
+                    b.ToTable((string)null);
+
+                    b.ToView("Vehicle", (string)null);
                 });
 
             modelBuilder.Entity("ClientVehicle", b =>

@@ -6,8 +6,10 @@ using NetTopologySuite.Geometries;
 
 namespace MoravianStar_Demo.Persistence.Migrations.Client
 {
+    /// <inheritdoc />
     public partial class Initial : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateSynonym("Client");
@@ -33,6 +35,7 @@ namespace MoravianStar_Demo.Persistence.Migrations.Client
                 column: "ClientId");
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(

@@ -6,8 +6,10 @@ using NetTopologySuite.Geometries;
 
 namespace MoravianStar_Demo.Persistence.Migrations.System
 {
+    /// <inheritdoc />
     public partial class Initial : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -124,6 +126,7 @@ namespace MoravianStar_Demo.Persistence.Migrations.System
                 principalColumn: "Id");
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
