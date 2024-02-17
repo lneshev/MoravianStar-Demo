@@ -21,10 +21,25 @@ namespace MoravianStar_Demo.Persistence.Migrations.Client
 #pragma warning disable 612, 618
             modelBuilder
                 .UseCollation("SQL_Latin1_General_CP1_CS_AS")
-                .HasAnnotation("ProductVersion", "6.0.3")
+                .HasAnnotation("ProductVersion", "6.0.27")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("ClientVehicle", b =>
+                {
+                    b.Property<int>("ClientId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VehicleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ClientId", "VehicleId");
+
+                    b.HasIndex("VehicleId");
+
+                    b.ToView("ClientVehicle");
+                });
 
             modelBuilder.Entity("MoravianStar_Demo.Common.Core.Entities.Test.AddressEntity", b =>
                 {
@@ -123,17 +138,21 @@ namespace MoravianStar_Demo.Persistence.Migrations.Client
 
             modelBuilder.Entity("ClientVehicle", b =>
                 {
-                    b.Property<int>("ClientId")
-                        .HasColumnType("int");
+                    b.HasOne("MoravianStar_Demo.Common.Core.Entities.Test.ClientEntity", "ClientEntity")
+                        .WithMany()
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Property<int>("VehicleId")
-                        .HasColumnType("int");
+                    b.HasOne("MoravianStar_Demo.Common.Core.Entities.Test.VehicleEntity", "VehicleEntity")
+                        .WithMany()
+                        .HasForeignKey("VehicleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasKey("ClientId", "VehicleId");
+                    b.Navigation("ClientEntity");
 
-                    b.HasIndex("VehicleId");
-
-                    b.ToView("ClientVehicle");
+                    b.Navigation("VehicleEntity");
                 });
 
             modelBuilder.Entity("MoravianStar_Demo.Common.Core.Entities.Test.AddressEntity", b =>
@@ -159,25 +178,6 @@ namespace MoravianStar_Demo.Persistence.Migrations.Client
                         .HasForeignKey("MainAddressId");
 
                     b.Navigation("MainAddress");
-                });
-
-            modelBuilder.Entity("ClientVehicle", b =>
-                {
-                    b.HasOne("MoravianStar_Demo.Common.Core.Entities.Test.ClientEntity", "ClientEntity")
-                        .WithMany()
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MoravianStar_Demo.Common.Core.Entities.Test.VehicleEntity", "VehicleEntity")
-                        .WithMany()
-                        .HasForeignKey("VehicleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ClientEntity");
-
-                    b.Navigation("VehicleEntity");
                 });
 
             modelBuilder.Entity("MoravianStar_Demo.Common.Core.Entities.Test.ClientEntity", b =>
