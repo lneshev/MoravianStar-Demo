@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="DataAnnotatedModelValidations" Version="5.1.0" />
+    <PackageReference Include="DataAnnotatedModelValidations" Version="5.2.0" />
     <PackageReference Include="ElmahCore" Version="2.1.2" />
     <PackageReference Include="ElmahCore.Sql" Version="2.1.2" />
     <PackageReference Include="GraphQL.Server.Ui.Voyager" Version="7.7.1" />
