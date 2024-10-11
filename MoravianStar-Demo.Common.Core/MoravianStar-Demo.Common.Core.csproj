@@ -10,7 +10,7 @@
   <ItemGroup>
     <PackageReference Include="LinqKit.Microsoft.EntityFrameworkCore" Version="8.1.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite" Version="8.0.10" />
-    <PackageReference Include="MoravianStar" Version="1.24.0" />
+    <PackageReference Include="MoravianStar" Version="1.24.1" />
   </ItemGroup>
 
   <ItemGroup>

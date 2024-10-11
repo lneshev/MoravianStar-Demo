@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MoravianStar" Version="1.24.0" />
+    <PackageReference Include="MoravianStar" Version="1.24.1" />
   </ItemGroup>
 
   <ItemGroup>
