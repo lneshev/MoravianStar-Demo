@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -12,12 +12,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="DataAnnotatedModelValidations" Version="5.2.0" />
+    <PackageReference Include="DataAnnotatedModelValidations" Version="6.0.0" />
     <PackageReference Include="ElmahCore" Version="2.1.2" />
     <PackageReference Include="ElmahCore.Sql" Version="2.1.2" />
-    <PackageReference Include="GraphQL.Server.Ui.Voyager" Version="8.0.3" />
-    <PackageReference Include="HotChocolate.AspNetCore" Version="13.9.14" />
-    <PackageReference Include="MoravianStar.WebAPI" Version="1.24.1" />
+    <PackageReference Include="GraphQL.Server.Ui.Voyager" Version="8.1.0" />
+    <PackageReference Include="HotChocolate.AspNetCore" Version="14.1.0" />
+    <PackageReference Include="MoravianStar.WebAPI" Version="1.25.0" />
   </ItemGroup>
 
   <ItemGroup>

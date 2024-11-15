@@ -75,11 +75,16 @@ namespace MoravianStar_Demo.Mobile.WebAPI
 
             services
                 .AddGraphQLServer()
-                .SetPagingOptions(new PagingOptions()
+                .ModifyPagingOptions(x =>
                 {
-                    DefaultPageSize = int.MaxValue - 1,
-                    MaxPageSize = int.MaxValue - 1,
-                    IncludeTotalCount = true
+                    x.DefaultPageSize = int.MaxValue - 1;
+                    x.MaxPageSize = int.MaxValue - 1;
+                    x.IncludeTotalCount = true;
+                })
+                .ModifyCostOptions(x =>
+                {
+                    x.EnforceCostLimits = false;
+                    x.ApplyCostDefaults = false;
                 })
                 .AddProjections()
                 .AddFiltering()
@@ -110,9 +115,9 @@ namespace MoravianStar_Demo.Mobile.WebAPI
                 // Types:
                 //It is not necessary to create types for all entities, like for LanguageEntity.
                 .AddType<ClientType>()
-                .AddType<VehicleType>()
-                .RegisterDbContext<SystemContext>(DbContextKind.Synchronized)
-                .RegisterDbContext<ClientDMLContext>(DbContextKind.Synchronized);
+                .AddType<VehicleType>();
+                //.RegisterDbContext<SystemContext>(DbContextKind.Synchronized)
+                //.RegisterDbContext<ClientDMLContext>(DbContextKind.Synchronized);
 
             services.AddScoped<IDbTransaction<SystemContext>, DbTransaction<SystemContext>>();
             services.AddScoped<IDbTransaction<ClientDMLContext>, DbTransaction<ClientDMLContext>>();

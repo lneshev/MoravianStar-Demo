@@ -9,8 +9,8 @@
 
   <ItemGroup>
     <PackageReference Include="Hangfire" Version="1.8.15" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.10" />
-    <PackageReference Include="MoravianStar" Version="1.24.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.11" />
+    <PackageReference Include="MoravianStar" Version="1.25.0" />
   </ItemGroup>
 
   <ItemGroup>
