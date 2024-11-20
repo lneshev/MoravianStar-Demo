@@ -2,9 +2,11 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MoravianStar.DependencyInjection;
 using MoravianStar.Settings;
 using MoravianStar.WebAPI.Extensions;
 using MoravianStar.WebAPI.Transformers;
@@ -66,6 +68,10 @@ namespace MoravianStar_Demo.Maintenance.WebAPI
                     options.UseSqlServer(configuration["ConnectionStrings:System"], sqlServerOptions =>
                     {
                         sqlServerOptions.UseNetTopologySuite();
+                    })
+                    .UseAsyncSeeding(async (systemDbContext, storeOperationPerformed, ct) =>
+                    {
+                        await DbSeeder.SeedSystemDbAsync((SystemContext)systemDbContext);
                     });
                 });
 
@@ -75,6 +81,16 @@ namespace MoravianStar_Demo.Maintenance.WebAPI
                     options.UseSqlServer(".", sqlServerOptions =>
                     {
                         sqlServerOptions.UseNetTopologySuite();
+                    })
+                    .UseAsyncSeeding(async (clientDbContext, storeOperationPerformed, ct) =>
+                    {
+                        var clientDMLDbContextFactory = ServiceLocator.Container.GetRequiredService<IDbContextFactory<ClientDMLContext>>();
+                        using (var clientDMLDbContext = await clientDMLDbContextFactory.CreateDbContextAsync())
+                        {
+                            clientDMLDbContext.Database.SetDbConnection(clientDbContext.Database.GetDbConnection());
+                            await clientDMLDbContext.Database.UseTransactionAsync(clientDbContext.Database.CurrentTransaction.GetDbTransaction());
+                            await DbSeeder.SeedClientDbAsync(clientDMLDbContext);
+                        }
                     });
                 }, ServiceLifetime.Singleton);
 

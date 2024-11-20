@@ -12,6 +12,9 @@ FETCH NEXT FROM db_cursor INTO @databaseName
 WHILE @@FETCH_STATUS = 0
 BEGIN
     DECLARE @sql NVARCHAR(100)
+	SET @sql = 'ALTER DATABASE ' + QUOTENAME(@databaseName) + ' SET SINGLE_USER WITH ROLLBACK IMMEDIATE'
+	EXEC(@sql)
+
     SET @sql = 'USE master; DROP DATABASE ' + QUOTENAME(@databaseName)
     EXEC(@sql)
 
