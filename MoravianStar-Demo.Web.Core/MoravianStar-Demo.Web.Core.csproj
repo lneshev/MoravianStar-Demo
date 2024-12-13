@@ -8,10 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MoravianStar" Version="1.25.0" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\MoravianStar-Demo.Common.Core\MoravianStar-Demo.Common.Core.csproj" />
   </ItemGroup>
 
