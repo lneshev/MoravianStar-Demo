@@ -16,8 +16,8 @@
     <PackageReference Include="ElmahCore" Version="2.1.2" />
     <PackageReference Include="ElmahCore.Sql" Version="2.1.2" />
     <PackageReference Include="GraphQL.Server.Ui.Voyager" Version="8.2.0" />
-    <PackageReference Include="HotChocolate.AspNetCore" Version="14.2.0" />
-    <PackageReference Include="MoravianStar.WebAPI" Version="1.27.0" />
+    <PackageReference Include="HotChocolate.AspNetCore" Version="14.3.0" />
+    <PackageReference Include="MoravianStar.WebAPI" Version="1.28.0" />
   </ItemGroup>
 
   <ItemGroup>
