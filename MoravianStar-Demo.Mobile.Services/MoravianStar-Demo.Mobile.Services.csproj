@@ -8,8 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="HotChocolate.Data.EntityFramework" Version="15.0.3" />
-    <PackageReference Include="HotChocolate.Data.Spatial" Version="15.0.3" />
+    <PackageReference Include="HotChocolate.Data.EntityFramework" Version="15.1.11" />
+    <PackageReference Include="HotChocolate.Data.Spatial" Version="15.1.11" />
+    <PackageReference Include="HotChocolate.Types.OffsetPagination" Version="15.1.11" />
   </ItemGroup>
 
   <ItemGroup>
