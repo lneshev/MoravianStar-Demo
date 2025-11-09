@@ -19,5 +19,20 @@ namespace MoravianStar_Demo.Web.WebAPI.Controllers
         {
             return await base.Read(filter, sorts, page);
         }
+
+        public override Task<ActionResult<ClientModel3>> Post([FromBody] ClientModel3 model)
+        {
+            return base.Post(model);
+        }
+
+        public override Task<ActionResult<ClientModel3>> Put([FromRoute] int id, [FromBody] ClientModel3 model)
+        {
+            return base.Put(id, model);
+        }
+
+        public override Task<ActionResult<ClientModel3>> Delete([FromRoute] int id)
+        {
+            return base.Delete(id);
+        }
     }
 }

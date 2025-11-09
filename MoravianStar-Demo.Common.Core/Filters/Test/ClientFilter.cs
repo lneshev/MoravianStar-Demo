@@ -21,9 +21,9 @@ namespace MoravianStar_Demo.Common.Core.Filters.Test
         public bool? HasMainAddress { get; set; }
         public bool? HasAdditionalAddress { get; set; }
 
-        public override IQueryable<ClientEntity> Filter<TDbContext>(IQueryable<ClientEntity> query, IEntityRepository<ClientEntity, TDbContext> repository)
+        public override IQueryable<ClientEntity> Filter<TDbContext>(IQueryable<ClientEntity> query, IEntityRepository<ClientEntity, TDbContext> entityRepository)
         {
-            query = base.Filter(query, repository);
+            query = base.Filter(query, entityRepository);
 
             var rootCriteria = PredicateBuilder.New<ClientEntity>(x => true);
             var mainCriteria = PredicateBuilder.New<ClientEntity>(x => true);

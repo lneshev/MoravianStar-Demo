@@ -141,6 +141,7 @@ namespace MoravianStar_Demo.Web.WebAPI
             services.AddTransient<IModelsMappingService<BlockModel, BlockEntity>, BlockModelMappingService>();
 
             services.AddTransient<IEntitySaved<ClientEntity>, ClientSaved>();
+            services.AddTransient<IEntityDeleting<ClientEntity>, ClientDeleting>();
 
             services.AddTransient<IExampleJobSender, ExampleJobSender>();
         }
