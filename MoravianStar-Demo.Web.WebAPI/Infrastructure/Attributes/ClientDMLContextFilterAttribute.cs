@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using MoravianStar_Demo.Persistence.DbContexts;
+using MoravianStar_Demo.Common.DataAccess.DbContexts;
 using System.Threading.Tasks;
 
 namespace MoravianStar_Demo.Web.WebAPI.Infrastructure.Attributes

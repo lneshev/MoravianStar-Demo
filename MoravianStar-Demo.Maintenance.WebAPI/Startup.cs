@@ -14,7 +14,7 @@ using MoravianStar_Demo.Common.Core.Resources;
 using MoravianStar_Demo.Maintenance.Core.Enums;
 using MoravianStar_Demo.Maintenance.Services.Services;
 using MoravianStar_Demo.Maintenance.WebAPI.Infrastructure.Constants;
-using MoravianStar_Demo.Persistence.DbContexts;
+using MoravianStar_Demo.Common.DataAccess.DbContexts;
 
 namespace MoravianStar_Demo.Maintenance.WebAPI
 {

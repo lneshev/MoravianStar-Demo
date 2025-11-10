@@ -22,7 +22,7 @@ using MoravianStar_Demo.Mobile.Services.GraphQL;
 using MoravianStar_Demo.Mobile.Services.GraphQL.Mutations.Test;
 using MoravianStar_Demo.Mobile.Services.GraphQL.Queries.Test;
 using MoravianStar_Demo.Mobile.WebAPI.Infrastructure.HttpRequestInterceptors;
-using MoravianStar_Demo.Persistence.DbContexts;
+using MoravianStar_Demo.Common.DataAccess.DbContexts;
 using System.Threading.Tasks;
 
 namespace MoravianStar_Demo.Mobile.WebAPI

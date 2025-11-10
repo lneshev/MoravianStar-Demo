@@ -1,7 +1,7 @@
 ﻿using MoravianStar.Dao;
 using MoravianStar_Demo.Common.Core.DTOs.Test;
 using MoravianStar_Demo.Common.Core.Entities.Test;
-using MoravianStar_Demo.Persistence.DbContexts;
+using MoravianStar_Demo.Common.DataAccess.DbContexts;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MS = MoravianStar.Dao;

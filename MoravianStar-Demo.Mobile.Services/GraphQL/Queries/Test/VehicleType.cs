@@ -2,7 +2,7 @@
 using HotChocolate.Types;
 using MoravianStar.GraphQL.Extensions;
 using MoravianStar_Demo.Common.Core.Entities.Test;
-using MoravianStar_Demo.Persistence.DbContexts;
+using MoravianStar_Demo.Common.DataAccess.DbContexts;
 using System.Linq;
 
 namespace MoravianStar_Demo.Mobile.Services.GraphQL.Queries.Test

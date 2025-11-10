@@ -16,7 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MoravianStar-Demo.Common.Services\MoravianStar-Demo.Common.Services.csproj" />
-    <ProjectReference Include="..\MoravianStar-Demo.Persistence\MoravianStar-Demo.Persistence.csproj" />
+    <ProjectReference Include="..\MoravianStar-Demo.Common.DataAccess\MoravianStar-Demo.Common.DataAccess.csproj" />
     <ProjectReference Include="..\MoravianStar-Demo.Web.Core\MoravianStar-Demo.Web.Core.csproj" />
     <ProjectReference Include="..\MoravianStar-Demo.Web.Services\MoravianStar-Demo.Web.Services.csproj" />
   </ItemGroup>

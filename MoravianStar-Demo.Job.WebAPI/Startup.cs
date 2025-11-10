@@ -16,7 +16,7 @@ using MoravianStar_Demo.Common.Core.Resources;
 using MoravianStar_Demo.Common.Jobs.Client.SqlServer;
 using MoravianStar_Demo.Common.Jobs.Jobs;
 using MoravianStar_Demo.Job.WebAPI.Infrastructure.Constants;
-using MoravianStar_Demo.Persistence.DbContexts;
+using MoravianStar_Demo.Common.DataAccess.DbContexts;
 using JobsClient = MoravianStar_Demo.Common.Jobs.Client;
 
 namespace MoravianStar_Demo.Job.WebAPI

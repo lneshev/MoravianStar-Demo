@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using MoravianStar.GraphQL.Attributes;
 using MoravianStar_Demo.Common.Core.Entities.Test;
 using MoravianStar_Demo.Mobile.Core.GraphQL.Mutations.Test;
-using MoravianStar_Demo.Persistence.DbContexts;
+using MoravianStar_Demo.Common.DataAccess.DbContexts;
 using System;
 using System.Threading.Tasks;
 using MS = MoravianStar.Dao;

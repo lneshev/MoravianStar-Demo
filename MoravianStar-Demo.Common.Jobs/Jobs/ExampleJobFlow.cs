@@ -1,6 +1,6 @@
 ﻿using MoravianStar_Demo.Common.Core.DTOs.Test;
 using MoravianStar_Demo.Common.Jobs.Common;
-using MoravianStar_Demo.Persistence.DbContexts;
+using MoravianStar_Demo.Common.DataAccess.DbContexts;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;

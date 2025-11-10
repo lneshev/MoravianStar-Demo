@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MoravianStar-Demo.Common.Jobs\MoravianStar-Demo.Common.Jobs.csproj" />
-    <ProjectReference Include="..\MoravianStar-Demo.Persistence\MoravianStar-Demo.Persistence.csproj" />
+    <ProjectReference Include="..\MoravianStar-Demo.Common.DataAccess\MoravianStar-Demo.Common.DataAccess.csproj" />
   </ItemGroup>
 
 </Project>

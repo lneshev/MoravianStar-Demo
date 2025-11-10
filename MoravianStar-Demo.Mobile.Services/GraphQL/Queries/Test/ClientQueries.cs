@@ -5,7 +5,7 @@ using MoravianStar.Dao;
 using MoravianStar.GraphQL.Attributes;
 using MoravianStar_Demo.Common.Core.Entities.Test;
 using MoravianStar_Demo.Common.Core.Filters.Test;
-using MoravianStar_Demo.Persistence.DbContexts;
+using MoravianStar_Demo.Common.DataAccess.DbContexts;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;

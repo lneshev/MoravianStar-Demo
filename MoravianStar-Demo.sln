@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoravianStar-Demo.Web.Servi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoravianStar-Demo.Web.WebAPI", "MoravianStar-Demo.Web.WebAPI\MoravianStar-Demo.Web.WebAPI.csproj", "{4C358F9A-6F3D-438B-842A-5AD18E613A95}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoravianStar-Demo.Persistence", "MoravianStar-Demo.Persistence\MoravianStar-Demo.Persistence.csproj", "{5CEBB276-8670-4BF0-BB15-7E641903DD14}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoravianStar-Demo.Common.DataAccess", "MoravianStar-Demo.Common.DataAccess\MoravianStar-Demo.Common.DataAccess.csproj", "{5CEBB276-8670-4BF0-BB15-7E641903DD14}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoravianStar-Demo.Maintenance.WebAPI", "MoravianStar-Demo.Maintenance.WebAPI\MoravianStar-Demo.Maintenance.WebAPI.csproj", "{879450DB-0DAE-4F80-BA71-D61FA02692DB}"
 	ProjectSection(ProjectDependencies) = postProject

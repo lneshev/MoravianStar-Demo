@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MoravianStar_Demo.Common.Core.Constants;
 using MoravianStar_Demo.Common.Core.Resources;
-using MoravianStar_Demo.Persistence.DbContexts;
+using MoravianStar_Demo.Common.DataAccess.DbContexts;
 using System;
 using System.Reflection;
 

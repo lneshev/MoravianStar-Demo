@@ -1,5 +1,5 @@
 ﻿using MoravianStar.Dao;
-using MoravianStar_Demo.Persistence.DbContexts;
+using MoravianStar_Demo.Common.DataAccess.DbContexts;
 
 namespace MoravianStar_Demo.Web.WebAPI.Controllers
 {
