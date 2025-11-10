@@ -8,7 +8,6 @@ using MoravianStar_Demo.Common.Core.Filters.Test;
 using MoravianStar_Demo.Common.DataAccess.DbContexts;
 using System.Collections.Generic;
 using System.Linq;
-using MS = MoravianStar.Dao;
 
 namespace MoravianStar_Demo.Mobile.Services.GraphQL.Queries.Test
 {
@@ -22,7 +21,7 @@ namespace MoravianStar_Demo.Mobile.Services.GraphQL.Queries.Test
         [GraphQLDescription("Gets the queryable blocks.")]
         public IQueryable<BlockEntity> GetBlocks(BlockFilter filter, List<Sort> sorts)
         {
-            return MS.Persistence.ForDbContext<ClientDMLContext>().ForEntity<BlockEntity>().ReadQuery(filter, sorts, trackable: false);
+            return Persistence.ForDbContext<ClientDMLContext>().ForEntity<BlockEntity>().ReadQuery(filter, sorts, trackable: false);
         }
     }
 }

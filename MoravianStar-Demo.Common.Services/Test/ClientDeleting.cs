@@ -13,11 +13,11 @@ namespace MoravianStar_Demo.Common.Services.Test
         {
             if (entity.MainAddressId.HasValue)
             {
-                await MoravianStar.Dao.Persistence.ForEntity<AddressEntity, Guid>().DeleteAsync(entity.MainAddress);
+                await Persistence.ForEntity<AddressEntity, Guid>().DeleteAsync(entity.MainAddress);
             }
             foreach (var addressEntity in entity.Addresses.ToList())
             {
-                await MoravianStar.Dao.Persistence.ForEntity<AddressEntity, Guid>().DeleteAsync(addressEntity);
+                await Persistence.ForEntity<AddressEntity, Guid>().DeleteAsync(addressEntity);
             }
         }
     }

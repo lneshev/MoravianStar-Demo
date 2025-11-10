@@ -16,7 +16,7 @@ namespace MoravianStar_Demo.Web.WebAPI.Controllers
 
         public ClientsController()
         {
-            clientER = MoravianStar.Dao.Persistence.ForDbContext<SystemContext>().ForEntity<ClientEntity>();
+            clientER = Persistence.ForDbContext<SystemContext>().ForEntity<ClientEntity>();
         }
 
         public override async Task<ActionResult<ClientModel>> Get([FromRoute] int id)

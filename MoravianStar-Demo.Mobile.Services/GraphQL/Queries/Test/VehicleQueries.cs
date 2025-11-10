@@ -9,7 +9,6 @@ using MoravianStar_Demo.Common.DataAccess.DbContexts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MS = MoravianStar.Dao;
 
 namespace MoravianStar_Demo.Mobile.Services.GraphQL.Queries.Test
 {
@@ -22,7 +21,7 @@ namespace MoravianStar_Demo.Mobile.Services.GraphQL.Queries.Test
         [GraphQLDescription("Gets the queryable vehicles.")]
         public IQueryable<VehicleEntity> GetVehicles(List<Sort> sorts)
         {
-            return MS.Persistence.ForDbContext<SystemContext>().ForEntity<VehicleEntity>().ReadQuery<VehicleFilter>(null, sorts, trackable: false);
+            return Persistence.ForDbContext<SystemContext>().ForEntity<VehicleEntity>().ReadQuery<VehicleFilter>(null, sorts, trackable: false);
         }
 
         [Obsolete("To be deleted after the demo.")]
@@ -34,7 +33,7 @@ namespace MoravianStar_Demo.Mobile.Services.GraphQL.Queries.Test
         [GraphQLDescription("Gets the queryable vehicles.")]
         public IQueryable<VehicleEntity> GetVehiclesObsolete()
         {
-            return MS.Persistence.ForDbContext<SystemContext>().ForEntity<VehicleEntity>().ReadQuery<VehicleFilter>(trackable: false);
+            return Persistence.ForDbContext<SystemContext>().ForEntity<VehicleEntity>().ReadQuery<VehicleFilter>(trackable: false);
         }
     }
 }

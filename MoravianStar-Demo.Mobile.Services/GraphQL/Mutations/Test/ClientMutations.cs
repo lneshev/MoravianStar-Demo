@@ -2,13 +2,13 @@
 using HotChocolate.Types;
 using HotChocolate.Types.Relay;
 using Microsoft.EntityFrameworkCore;
+using MoravianStar.Dao;
 using MoravianStar.GraphQL.Attributes;
 using MoravianStar_Demo.Common.Core.Entities.Test;
-using MoravianStar_Demo.Mobile.Core.GraphQL.Mutations.Test;
 using MoravianStar_Demo.Common.DataAccess.DbContexts;
+using MoravianStar_Demo.Mobile.Core.GraphQL.Mutations.Test;
 using System;
 using System.Threading.Tasks;
-using MS = MoravianStar.Dao;
 
 namespace MoravianStar_Demo.Mobile.Services.GraphQL.Mutations.Test
 {
@@ -19,7 +19,7 @@ namespace MoravianStar_Demo.Mobile.Services.GraphQL.Mutations.Test
         [GraphQLDescription("Creates a client.")]
         public async Task<ClientEntity> CreateClientAsync(SaveClientInput input)
         {
-            var dbContextService = MS.Persistence.ForDbContext<SystemContext>();
+            var dbContextService = Persistence.ForDbContext<SystemContext>();
             var dbTransaction = dbContextService.DbTransaction;
 
             await dbTransaction.BeginAsync();
@@ -44,7 +44,7 @@ namespace MoravianStar_Demo.Mobile.Services.GraphQL.Mutations.Test
         [GraphQLDescription("Updates a client.")]
         public async Task<ClientEntity> UpdateClientAsync([ID] int id, SaveClientInput input)
         {
-            var entity = await MS.Persistence.ForDbContext<SystemContext>().ForEntity<ClientEntity, int>().GetAsync(id, x => x.Include(y => y.MainAddress));
+            var entity = await Persistence.ForDbContext<SystemContext>().ForEntity<ClientEntity, int>().GetAsync(id, x => x.Include(y => y.MainAddress));
 
             entity.Name = input.Name;
             entity.Description = input.Description;
@@ -57,7 +57,7 @@ namespace MoravianStar_Demo.Mobile.Services.GraphQL.Mutations.Test
             else if (entity.MainAddressId.HasValue && input.MainAddress == null)
             {
                 // Delete the address
-                await MS.Persistence.ForDbContext<SystemContext>().ForEntity<AddressEntity, Guid>().DeleteAsync(entity.MainAddressId.Value);
+                await Persistence.ForDbContext<SystemContext>().ForEntity<AddressEntity, Guid>().DeleteAsync(entity.MainAddressId.Value);
             }
             else if (entity.MainAddressId.HasValue && input.MainAddress != null)
             {
@@ -65,7 +65,7 @@ namespace MoravianStar_Demo.Mobile.Services.GraphQL.Mutations.Test
                 entity.MainAddress.Address = input.MainAddress.Address;
             }
 
-            await MS.Persistence.ForDbContext<SystemContext>().ForEntity<ClientEntity>().SaveAsync(entity);
+            await Persistence.ForDbContext<SystemContext>().ForEntity<ClientEntity>().SaveAsync(entity);
 
             // await eventSender.SendAsync(nameof(Subscription.OnClientCreated), entity);
 
@@ -77,14 +77,14 @@ namespace MoravianStar_Demo.Mobile.Services.GraphQL.Mutations.Test
         [GraphQLDescription("Deletes a client.")]
         public async Task<bool> DeleteClientAsync([ID] int id)
         {
-            var entity = await MS.Persistence.ForEntity<ClientEntity, int>().GetAsync(id);
+            var entity = await Persistence.ForEntity<ClientEntity, int>().GetAsync(id);
 
             if (entity.MainAddressId.HasValue)
             {
-                await MS.Persistence.ForEntity<AddressEntity, Guid>().DeleteAsync(entity.MainAddressId.Value);
+                await Persistence.ForEntity<AddressEntity, Guid>().DeleteAsync(entity.MainAddressId.Value);
             }
 
-            await MS.Persistence.ForEntity<ClientEntity>().DeleteAsync(entity);
+            await Persistence.ForEntity<ClientEntity>().DeleteAsync(entity);
 
             // await eventSender.SendAsync(nameof(Subscription.OnClientDeleted), entity); // Entity vs Id vs ?!
 

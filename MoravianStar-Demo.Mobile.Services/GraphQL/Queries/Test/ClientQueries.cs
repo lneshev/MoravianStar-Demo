@@ -9,7 +9,6 @@ using MoravianStar_Demo.Common.DataAccess.DbContexts;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MS = MoravianStar.Dao;
 
 namespace MoravianStar_Demo.Mobile.Services.GraphQL.Queries.Test
 {
@@ -22,21 +21,21 @@ namespace MoravianStar_Demo.Mobile.Services.GraphQL.Queries.Test
         [GraphQLDescription("Gets the queryable clients.")]
         public IQueryable<ClientEntity> GetClients(ClientFilter filter, List<Sort> sorts)
         {
-            return MS.Persistence.ForDbContext<SystemContext>().ForEntity<ClientEntity>().ReadQuery(filter, sorts, trackable: false);
+            return Persistence.ForDbContext<SystemContext>().ForEntity<ClientEntity>().ReadQuery(filter, sorts, trackable: false);
         }
 
         [UseServiceLocator]
         [GraphQLDescription("Returns the count of clients.")]
         public async Task<int> CountClientsAsync(ClientFilter filter)
         {
-            return await MS.Persistence.ForDbContext<SystemContext>().ForEntity<ClientEntity>().CountAsync(filter);
+            return await Persistence.ForDbContext<SystemContext>().ForEntity<ClientEntity>().CountAsync(filter);
         }
 
         [UseServiceLocator]
         [GraphQLDescription("Checks if clients exist.")]
         public async Task<bool> ExistClientsAsync(ClientFilter filter)
         {
-            return await MS.Persistence.ForDbContext<SystemContext>().ForEntity<ClientEntity>().ExistAsync(filter);
+            return await Persistence.ForDbContext<SystemContext>().ForEntity<ClientEntity>().ExistAsync(filter);
         }
     }
 }

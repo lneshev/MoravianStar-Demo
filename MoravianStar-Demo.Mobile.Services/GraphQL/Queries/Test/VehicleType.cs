@@ -1,5 +1,6 @@
 ﻿using HotChocolate;
 using HotChocolate.Types;
+using MoravianStar.Dao;
 using MoravianStar.GraphQL.Extensions;
 using MoravianStar_Demo.Common.Core.Entities.Test;
 using MoravianStar_Demo.Common.DataAccess.DbContexts;
@@ -45,7 +46,7 @@ namespace MoravianStar_Demo.Mobile.Services.GraphQL.Queries.Test
 
             public int GetClientsCount2([Parent] VehicleEntity vehicle)
             {
-                return MoravianStar.Dao.Persistence.ForDbContext<SystemContext>().DbContext.Set<VehicleEntity>().Where(x => x.Id == vehicle.Id).Select(x => x.Clients.Count).SingleOrDefault();
+                return Persistence.ForDbContext<SystemContext>().DbContext.Set<VehicleEntity>().Where(x => x.Id == vehicle.Id).Select(x => x.Clients.Count).SingleOrDefault();
             }
         }
     }

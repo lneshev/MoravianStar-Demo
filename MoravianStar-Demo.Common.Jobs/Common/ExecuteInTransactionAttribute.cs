@@ -4,7 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using MoravianStar.Dao;
 using MoravianStar.DependencyInjection;
 using System;
-using MS = MoravianStar.Dao;
 
 namespace MoravianStar_Demo.Common.Jobs.Common
 {
@@ -18,7 +17,7 @@ namespace MoravianStar_Demo.Common.Jobs.Common
 
         public ExecuteInTransactionAttribute()
         {
-            DbContextType = MS.Persistence.DefaultDbContextType;
+            DbContextType = Persistence.DefaultDbContextType;
         }
 
         public ExecuteInTransactionAttribute(Type dbContextType)
