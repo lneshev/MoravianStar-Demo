@@ -50,6 +50,11 @@ namespace MoravianStar_Demo.Web.WebAPI.Controllers
             return await base.Exist(filter);
         }
 
+        public override Task<ActionResult<bool>> Exists([FromRoute] int id)
+        {
+            return base.Exists(id);
+        }
+
         public override async Task<ActionResult<ClientModel>> Post([FromBody] ClientModel model)
         {
             return await base.Post(model);
