@@ -1,5 +1,7 @@
 using ElmahCore.Mvc;
 using ElmahCore.Sql;
+using Giserver.NetTopologySuite.Serialize;
+using Giserver.NetTopologySuite.Swagger.Swashbuckle;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -53,12 +55,12 @@ namespace MoravianStar_Demo.Web.WebAPI
             });
 
             services.AddControllers(options =>
-                    {
-                        options.Conventions.Add(new RouteTokenTransformerConvention(new SlugifyParameterTransformer()));
-                        options.Filters.Add<ClientDMLContextFilterAttribute>();
-                        options.Filters.Add<ValidateModelStateAttribute>();
-                        options.AddCustomSimpleTypeModelBinderProvider();
-                    })
+            {
+                options.Conventions.Add(new RouteTokenTransformerConvention(new SlugifyParameterTransformer()));
+                options.Filters.Add<ClientDMLContextFilterAttribute>();
+                options.Filters.Add<ValidateModelStateAttribute>();
+                options.AddCustomSimpleTypeModelBinderProvider();
+            })
                     .AddControllersAsServices()
                     .AddNewtonsoftJson(options =>
                     {
@@ -75,12 +77,16 @@ namespace MoravianStar_Demo.Web.WebAPI
                 // won't be executed for controllers marked with ApiControllerAttribute
                 options.SuppressModelStateInvalidFilter = true;
             });
-
+            
             services.AddSwaggerGen(options =>
             {
                 options.DocumentFilter<HideInDocsFilter>();
                 options.OperationFilter<ClientIdHeaderOperationFilter>();
+                options.AddGeometry(GeoSerializeType.Geojson);
             });
+
+            // Ensure Swashbuckle uses Newtonsoft wiring (aligns Swagger generation with controller JSON serializer)
+            services.AddSwaggerGenNewtonsoftSupport();
 
             services.AddAuthorization();
 
