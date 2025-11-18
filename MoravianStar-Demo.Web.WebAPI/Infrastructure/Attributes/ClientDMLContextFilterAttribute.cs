@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using MoravianStar_Demo.Common.Core.Constants;
 using MoravianStar_Demo.Common.DataAccess.DbContexts;
 using System.Threading.Tasks;
 
@@ -22,7 +23,7 @@ namespace MoravianStar_Demo.Web.WebAPI.Infrastructure.Attributes
 
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
-            var clientIdString = context.HttpContext.Request.Headers["ClientId"];
+            var clientIdString = context.HttpContext.Request.Headers[HTTPHeaderConstants.ClientId];
             if (!string.IsNullOrEmpty(clientIdString))
             {
                 var clientId = int.Parse(clientIdString);

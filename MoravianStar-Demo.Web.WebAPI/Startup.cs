@@ -21,12 +21,13 @@ using MoravianStar_Demo.Common.Core.Configuration;
 using MoravianStar_Demo.Common.Core.Entities.Test;
 using MoravianStar_Demo.Common.Core.Enums.Test;
 using MoravianStar_Demo.Common.Core.Resources;
-using MoravianStar_Demo.Common.Services.Test;
 using MoravianStar_Demo.Common.DataAccess.DbContexts;
+using MoravianStar_Demo.Common.Services.Test;
 using MoravianStar_Demo.Web.Core.Models.Test;
 using MoravianStar_Demo.Web.Services.Test;
 using MoravianStar_Demo.Web.WebAPI.Infrastructure.Attributes;
 using MoravianStar_Demo.Web.WebAPI.Infrastructure.Constants;
+using MoravianStar_Demo.Web.WebAPI.Infrastructure.Swagger;
 using NetTopologySuite.IO;
 using System.Threading.Tasks;
 
@@ -78,6 +79,7 @@ namespace MoravianStar_Demo.Web.WebAPI
             services.AddSwaggerGen(options =>
             {
                 options.DocumentFilter<HideInDocsFilter>();
+                options.OperationFilter<ClientIdHeaderOperationFilter>();
             });
 
             services.AddAuthorization();
