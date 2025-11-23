@@ -10,11 +10,9 @@ using MoravianStar.DependencyInjection;
 using MoravianStar.Settings;
 using MoravianStar.WebAPI.Extensions;
 using MoravianStar.WebAPI.Transformers;
-using MoravianStar_Demo.Common.Core.Resources;
-using MoravianStar_Demo.Maintenance.Core.Enums;
+using MoravianStar_Demo.Common.DataAccess.DbContexts;
 using MoravianStar_Demo.Maintenance.Services.Services;
 using MoravianStar_Demo.Maintenance.WebAPI.Infrastructure.Constants;
-using MoravianStar_Demo.Common.DataAccess.DbContexts;
 
 namespace MoravianStar_Demo.Maintenance.WebAPI
 {
@@ -119,8 +117,6 @@ namespace MoravianStar_Demo.Maintenance.WebAPI
             app.UseMoravianStar(env, () =>
             {
                 Settings.DefaultDbContextType = typeof(SystemContext);
-                Settings.StringResourceTypeForEnums = typeof(Strings);
-                Settings.AssemblyForEnums = typeof(DbUpdateState).Assembly;
             });
 
             app.UseHttpsRedirection();

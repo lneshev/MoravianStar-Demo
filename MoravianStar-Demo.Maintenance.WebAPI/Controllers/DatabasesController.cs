@@ -25,7 +25,7 @@ namespace MoravianStar_Demo.Maintenance.WebAPI.Controllers
         }
 
         [HttpPost(RoutingConstants.Action)]
-        public async Task<ActionResult<DbUpdateResult>> CreateNewClientDatabase()
+        public Task<ActionResult<DbUpdateResult>> CreateNewClientDatabase()
         {
             throw new NotImplementedException();
         }
