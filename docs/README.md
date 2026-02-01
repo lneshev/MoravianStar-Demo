@@ -6,6 +6,8 @@
 
 A multi-project .NET 9 application demonstrating a simple demo system with web, mobile, maintenance and job components using [Moravian Star](https://github.com/lneshev/MoravianStar) library.
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/lneshev/MoravianStar-Demo/blob/main/LICENSE)
+
 ## Table of Contents
 
 - [Overview](#overview)
