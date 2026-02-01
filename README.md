@@ -1,1 +1,0 @@
-# MoravianStar-Demo
