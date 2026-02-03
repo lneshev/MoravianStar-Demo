@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <Nullable>disable</Nullable>
     <ImplicitUsings>disable</ImplicitUsings>
     <RootNamespace>MoravianStar_Demo.Mobile.WebAPI</RootNamespace>
@@ -12,12 +12,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="DataAnnotatedModelValidations" Version="8.1.2" />
+    <PackageReference Include="DataAnnotatedModelValidations" Version="9.0.0" />
     <PackageReference Include="ElmahCore" Version="2.1.2" />
     <PackageReference Include="ElmahCore.Sql" Version="2.1.2" />
     <PackageReference Include="GraphQL.Server.Ui.Voyager" Version="8.3.3" />
     <PackageReference Include="HotChocolate.AspNetCore" Version="15.1.12" />
-    <PackageReference Include="MoravianStar.WebAPI" Version="1.49.1" />
+    <PackageReference Include="MoravianStar.WebAPI" Version="1.51.0" />
   </ItemGroup>
 
   <ItemGroup>

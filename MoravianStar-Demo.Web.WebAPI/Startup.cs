@@ -1,7 +1,5 @@
 using ElmahCore.Mvc;
 using ElmahCore.Sql;
-using Giserver.NetTopologySuite.Serialize;
-using Giserver.NetTopologySuite.Swagger.Swashbuckle;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -18,6 +16,7 @@ using MoravianStar.WebAPI.Extensions;
 using MoravianStar.WebAPI.JsonConverters;
 using MoravianStar.WebAPI.ModelBinders;
 using MoravianStar.WebAPI.Swagger;
+using MoravianStar.WebAPI.Swagger.NetTopologySuite;
 using MoravianStar.WebAPI.Transformers;
 using MoravianStar_Demo.Common.Core.Configuration;
 using MoravianStar_Demo.Common.Core.Entities.Test;

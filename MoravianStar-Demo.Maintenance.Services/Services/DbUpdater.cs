@@ -112,7 +112,18 @@ namespace MoravianStar_Demo.Maintenance.Services.Services
 
         private async Task MigrateAndSeedSystemDB()
         {
-            await systemDbContext.Database.MigrateAsync();
+            var systemDbCreator = (IRelationalDatabaseCreator)systemDbContext.GetInfrastructure().GetRequiredService<IDatabaseCreator>();
+            if (!await systemDbCreator.ExistsAsync())
+            {
+                await systemDbCreator.CreateAsync();
+            }
+
+            using (var tx = await systemDbContext.Database.BeginTransactionAsync())
+            {
+                await systemDbContext.Database.MigrateAsync();
+                //throw new Exception("Test");
+                await tx.CommitAsync();
+            }
         }
 
         private async Task MigrateAndSeedEmptyDB()
@@ -122,7 +133,18 @@ namespace MoravianStar_Demo.Maintenance.Services.Services
             using (var emptyDbContext = await clientDbContextFactory.CreateDbContextAsync())
             {
                 emptyDbContext.Database.SetConnectionString(emptyDbConnectionString);
-                await emptyDbContext.Database.MigrateAsync();
+
+                var emptyDbCreator = (IRelationalDatabaseCreator)emptyDbContext.GetInfrastructure().GetRequiredService<IDatabaseCreator>();
+                if (!await emptyDbCreator.ExistsAsync())
+                {
+                    await emptyDbCreator.CreateAsync();
+                }
+
+                using (var tx = await emptyDbContext.Database.BeginTransactionAsync())
+                {
+                    await emptyDbContext.Database.MigrateAsync();
+                    await tx.CommitAsync();
+                }
             }
         }
 
@@ -166,7 +188,19 @@ namespace MoravianStar_Demo.Maintenance.Services.Services
             using (var clientDbContext = await clientDbContextFactory.CreateDbContextAsync())
             {
                 clientDbContext.Database.SetConnectionString(clientDbConnectionString);
-                await clientDbContext.Database.MigrateAsync();
+
+                var clientDbCreator = (IRelationalDatabaseCreator)clientDbContext.GetInfrastructure().GetRequiredService<IDatabaseCreator>();
+                if (!await clientDbCreator.ExistsAsync())
+                {
+                    await clientDbCreator.CreateAsync();
+                }
+
+                using (var tx = await clientDbContext.Database.BeginTransactionAsync())
+                {
+                    await clientDbContext.Database.MigrateAsync();
+                    //throw new Exception("Test");
+                    await tx.CommitAsync();
+                }
             }
         }
     }

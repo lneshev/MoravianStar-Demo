@@ -1,4 +1,4 @@
-﻿using Microsoft.OpenApi.Models;
+﻿using Microsoft.OpenApi;
 using MoravianStar_Demo.Common.Core.Constants;
 using MoravianStar_Demo.Web.WebAPI.Controllers;
 using Swashbuckle.AspNetCore.SwaggerGen;
@@ -12,7 +12,7 @@ namespace MoravianStar_Demo.Web.WebAPI.Infrastructure.Swagger
         {
             if (IsClientIdHeaderRequired(context))
             {
-                operation.Parameters ??= new List<OpenApiParameter>();
+                operation.Parameters ??= new List<IOpenApiParameter>();
 
                 operation.Parameters.Add(new OpenApiParameter
                 {
@@ -21,7 +21,7 @@ namespace MoravianStar_Demo.Web.WebAPI.Infrastructure.Swagger
                     Required = true,
                     Schema = new OpenApiSchema
                     {
-                        Type = "string"
+                        Type = JsonSchemaType.String
                     }
                 });
             }
