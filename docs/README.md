@@ -4,7 +4,7 @@
 
 # Moravian Star - Demo
 
-A multi-project .NET 9 application demonstrating a simple demo system with web, mobile, maintenance and job components using [Moravian Star](https://github.com/lneshev/MoravianStar) library.
+A multi-project .NET 10 application demonstrating a simple demo system with web, mobile, maintenance and job components using [Moravian Star](https://github.com/lneshev/MoravianStar) library.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/lneshev/MoravianStar-Demo/blob/main/LICENSE)
 
@@ -22,12 +22,12 @@ A multi-project .NET 9 application demonstrating a simple demo system with web, 
 
 ## Overview
 
-Moravian Star - Demo is a modular .NET 9 solution featuring multiple layers including core business logic, services, data access, and web APIs for web, mobile, maintenance and job operations.
+Moravian Star - Demo is a modular .NET 10 solution featuring multiple layers including core business logic, services, data access, and web APIs for web, mobile, maintenance and job operations.
 
 ## Technology stack
-- ASP.NET Core 9 Web API
-- Entity Framework Core 9
-- SQL Server
+- ASP.NET Core 10 Web API
+- Entity Framework Core 10
+- SQL Server 
 - Hangfire
 - GraphQL via Hot Chocolate
 - Moravian Star
@@ -75,8 +75,8 @@ Background job processing:
 
 ## Prerequisites
 
-- .NET 9 SDK
-- Visual Studio 2022 (or later) or Visual Studio Code
+- .NET 10 SDK
+- Visual Studio 2026 (or later) or Visual Studio Code
 
 ## Getting Started
 
