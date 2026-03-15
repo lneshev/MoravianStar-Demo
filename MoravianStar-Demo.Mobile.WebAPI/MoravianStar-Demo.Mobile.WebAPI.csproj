@@ -12,12 +12,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="DataAnnotatedModelValidations" Version="9.0.0" />
+    <PackageReference Include="DataAnnotatedModelValidations" Version="10.0.0" />
     <PackageReference Include="ElmahCore" Version="2.1.2" />
     <PackageReference Include="ElmahCore.Sql" Version="2.1.2" />
     <PackageReference Include="GraphQL.Server.Ui.Voyager" Version="8.3.3" />
     <PackageReference Include="HotChocolate.AspNetCore" Version="15.1.12" />
-    <PackageReference Include="MoravianStar.WebAPI" Version="1.52.0" />
+    <PackageReference Include="MoravianStar.WebAPI" Version="1.54.0" />
   </ItemGroup>
 
   <ItemGroup>
