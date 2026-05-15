@@ -19,7 +19,7 @@ namespace MoravianStar_Demo.Mobile.Services.GraphQL
     {
         protected override void OnConfigure(IDescriptorContext context, IObjectFieldDescriptor descriptor, MemberInfo member)
         {
-            descriptor.Extend().Definition.MiddlewareDefinitions.Add(new(next => async context =>
+            descriptor.Extend().Configuration.MiddlewareConfigurations.Add(new(next => async context =>
             {
                 var configuration = context.Services.GetRequiredService<IConfiguration>();
                 var clientIdString = context.GetGlobalStateOrDefault<string>(HTTPHeaderConstants.ClientId);
